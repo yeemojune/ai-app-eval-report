@@ -1779,9 +1779,10 @@ function renderSubjective() {
   });
   const modalityOrder = ['文本理解', '文本生成', '图片理解', '图片生成', '语音理解', '语音生成', '视频理解', '视频生成'];
   const modalityIcons = {
-    '文本理解': '��', '文本生成': '✍️', '图片理解': '🖼️', '图片生成': '🎨',
+    '文本理解': '📝', '文本生成': '✍️', '图片理解': '🖼️', '图片生成': '🎨',
     '语音理解': '👂', '语音生成': '🎙️', '视频理解': '👁️', '视频生成': '🎬'
   };
+  const totalScenes = scenes.length;
 
   // Overview ranking
   html += `<section><div class="section-header">
@@ -1798,7 +1799,8 @@ function renderSubjective() {
   html += `</tbody></table></div>
     <div class="highlight-box"><strong>综合表现：</strong>在全部 ${scenes.length} 个评测场景中，<strong>${sorted[0]}</strong>（${appAvgs[sorted[0]].toFixed(2)}）综合均分排名第一，<strong>${sorted[1]}</strong>（${appAvgs[sorted[1]].toFixed(2)}）和 <strong>${sorted[2]}</strong>（${appAvgs[sorted[2]].toFixed(2)}）分列二三位。</div></section>`;
 
-  // Per-modality sections
+  // Per-modality sections with global scene numbering
+  let globalIdx = 0;
   modalityOrder.forEach(mod => {
     const modScenes = modalities[mod];
     if (!modScenes) return;
@@ -1809,25 +1811,27 @@ function renderSubjective() {
       <h2>${mod}</h2></div>
       <p class="section-desc">${mod} 类别下共 ${modScenes.length} 个评测场景，涵盖 ${modScenes.join('、')}。</p>`;
 
-    modScenes.forEach((sceneName, idx) => {
+    modScenes.forEach((sceneName) => {
+      globalIdx++;
       const scene = subjectiveData[sceneName];
       const dims = scene.dimensions;
-      const [c1, c2] = iconColors[idx % iconColors.length];
+      const [c1, c2] = iconColors[(globalIdx-1) % iconColors.length];
       const validApps = appNames.filter(n => scene.data[n] && scene.data[n].some(v => v !== null));
       const appAvgScene = {};
       validApps.forEach(n => {
         const vals = scene.data[n].filter(v => v !== null);
-        const compAvg = scene.composite[n] && scene.composite[n].平均分 !== null ? scene.composite[n].平均分 : 0;
         appAvgScene[n] = vals.length > 0 ? (vals.reduce((a,b)=>a+b,0)/vals.length) : 0;
       });
       const topApp = validApps.sort((a,b) => appAvgScene[b] - appAvgScene[a])[0] || '-';
-      const chartId = `subjective-radar-${mod}-${idx}`;
-      const tableId = `subjective-table-${mod}-${idx}`;
+      const chartId1 = `sub-radar1-${globalIdx}`;
+      const chartId2 = `sub-radar2-${globalIdx}`;
 
       html += `<div class="dir-section" style="margin-top:24px;">
-        <div class="dir-header"><h3>${sceneName}</h3></div>
+        <div class="dir-header"><h3>${sceneName}</h3>
+        <span class="dir-count">场景 ${globalIdx}/${totalScenes}</span></div>
         <div class="scene-layout">
-          <div class="radar-wrap"><canvas id="${chartId}"></canvas></div>
+          <div class="radar-wrap"><canvas id="${chartId1}"></canvas></div>
+          <div class="radar-wrap"><canvas id="${chartId2}"></canvas></div>
           <div class="table-side"><div class="sub-table-wrap"><table><thead><tr><th>APP</th>`;
       dims.forEach(d => { html += `<th style="font-size:10px;white-space:nowrap;">${d}</th>`; });
       html += `<th>交互体验</th><th>拟人化</th><th>效率感知</th><th>三维度均分</th></tr></thead><tbody>`;
@@ -1840,7 +1844,6 @@ function renderSubjective() {
           if (v === null) html += `<td class="score-na">N/A</td>`;
           else html += `<td class="score-val">${v.toFixed(2)}</td>`;
         });
-        // Composite scores
         ['交互体验', '拟人化', '效率感知', '平均分'].forEach(k => {
           const v = comp ? comp[k] : null;
           if (v === null) html += `<td class="score-na">N/A</td>`;
@@ -1866,14 +1869,65 @@ function renderSubjective() {
   container.innerHTML = html;
 
   // Render radar charts
+  globalIdx = 0;
   modalityOrder.forEach(mod => {
     const modScenes = modalities[mod];
     if (!modScenes) return;
-    modScenes.forEach((sceneName, idx) => {
+    modScenes.forEach((sceneName) => {
+      globalIdx++;
       const scene = subjectiveData[sceneName];
       const dims = scene.dimensions;
-      const va = appNames.filter(n => scene.data[n] && scene.data[n].some(v => v !== null));
-      const datasets = va.map(name => {
+      const level1Dims = ['交互体验', '拟人化', '效率感知'];
+
+      // First-level radar (3 dimensions)
+      const va1 = appNames.filter(n => {
+        const comp = scene.composite[n];
+        return comp && (comp['交互体验'] !== null || comp['拟人化'] !== null || comp['效率感知'] !== null);
+      });
+      const datasets1 = va1.map(name => {
+        const ci = appNames.indexOf(name);
+        const c = colorPalette[ci];
+        const comp = scene.composite[name];
+        return {
+          label: name,
+          data: level1Dims.map(d => (comp && comp[d] !== null) ? comp[d] : 0),
+          backgroundColor: 'transparent',
+          borderColor: c, pointBackgroundColor: c, pointBorderColor: '#fff',
+          pointRadius: 4, pointHoverRadius: 7, pointBorderWidth: 2, borderWidth: 2
+        };
+      });
+      const ctx1 = document.getElementById(`sub-radar1-${globalIdx}`);
+      if (ctx1) {
+        new Chart(ctx1, {
+          type: 'radar',
+          data: { labels: level1Dims, datasets: datasets1 },
+          options: {
+            responsive: true, maintainAspectRatio: false, devicePixelRatio: 2,
+            plugins: {
+              legend: { display: false },
+              title: { display: true, text: '一级维度', font: { size: 13, weight: 'bold' }, color: '#2d3748', padding: { bottom: 8 } },
+              tooltip: {
+                backgroundColor: 'rgba(0,0,0,0.85)', titleFont: { size: 13, weight: 'bold' },
+                bodyFont: { size: 12 }, padding: 10, cornerRadius: 8,
+                callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.r.toFixed(2) }
+              }
+            },
+            scales: {
+              r: {
+                beginAtZero: true, max: 5, min: 0,
+                ticks: { stepSize: 1, font: { size: 11 }, backdropColor: 'transparent', color: '#4a5568' },
+                grid: { color: 'rgba(0,0,0,0.08)', circular: true },
+                angleLines: { color: 'rgba(0,0,0,0.08)' },
+                pointLabels: { font: { size: 12, weight: '700' }, color: '#2d3748' }
+              }
+            }
+          }
+        });
+      }
+
+      // Second-level radar (9 dimensions)
+      const va2 = appNames.filter(n => scene.data[n] && scene.data[n].some(v => v !== null));
+      const datasets2 = va2.map(name => {
         const ci = appNames.indexOf(name);
         const c = colorPalette[ci];
         return {
@@ -1884,36 +1938,37 @@ function renderSubjective() {
           pointRadius: 3, pointHoverRadius: 6, pointBorderWidth: 2, borderWidth: 1.5
         };
       });
-      const chartId = `subjective-radar-${mod}-${idx}`;
-      const ctx = document.getElementById(chartId);
-      if (!ctx) return;
-      new Chart(ctx, {
-        type: 'radar',
-        data: { labels: dims, datasets },
-        options: {
-          responsive: true, maintainAspectRatio: false, devicePixelRatio: 2,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              backgroundColor: 'rgba(0,0,0,0.85)', titleFont: { size: 13, weight: 'bold' },
-              bodyFont: { size: 12 }, padding: 10, cornerRadius: 8,
-              callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.r.toFixed(2) }
-            }
-          },
-          scales: {
-            r: {
-              beginAtZero: true, max: 5, min: 0,
-              ticks: { stepSize: 1, font: { size: 10 }, backdropColor: 'transparent', color: '#4a5568' },
-              grid: { color: 'rgba(0,0,0,0.08)', circular: true },
-              angleLines: { color: 'rgba(0,0,0,0.08)' },
-              pointLabels: { font: { size: 9, weight: '600' }, color: '#2d3748' }
+      const ctx2 = document.getElementById(`sub-radar2-${globalIdx}`);
+      if (ctx2) {
+        new Chart(ctx2, {
+          type: 'radar',
+          data: { labels: dims, datasets: datasets2 },
+          options: {
+            responsive: true, maintainAspectRatio: false, devicePixelRatio: 2,
+            plugins: {
+              legend: { display: false },
+              title: { display: true, text: '二级维度', font: { size: 13, weight: 'bold' }, color: '#2d3748', padding: { bottom: 8 } },
+              tooltip: {
+                backgroundColor: 'rgba(0,0,0,0.85)', titleFont: { size: 13, weight: 'bold' },
+                bodyFont: { size: 12 }, padding: 10, cornerRadius: 8,
+                callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.r.toFixed(2) }
+              }
+            },
+            scales: {
+              r: {
+                beginAtZero: true, max: 5, min: 0,
+                ticks: { stepSize: 1, font: { size: 10 }, backdropColor: 'transparent', color: '#4a5568' },
+                grid: { color: 'rgba(0,0,0,0.08)', circular: true },
+                angleLines: { color: 'rgba(0,0,0,0.08)' },
+                pointLabels: { font: { size: 9, weight: '600' }, color: '#2d3748' }
+              }
             }
           }
-        }
-      });
+        });
+      }
     });
   });
-}
+}}
 
 /* ============ Init ============ */
 document.addEventListener('DOMContentLoaded', function() {
