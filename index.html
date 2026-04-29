@@ -117,10 +117,19 @@
   .table-toggle:hover { background: rgba(0,0,0,0.1); color: #4a5568; }
   .table-toggle.active { background: rgba(49,130,206,0.1); border-color: rgba(49,130,206,0.3); color: #3182ce; }
   .sub-table-wrap.collapsed { display: none; }
-  .radar-wrap { position: relative; height: 640px; max-width: 930px; margin: 0 auto; }
+  .radar-wrap { position: relative; height: 480px; max-width: 930px; margin: 0 auto; }
   .radar-wrap canvas { width: 100% !important; height: 100% !important; }
   .scene-layout .table-side { overflow-x: auto; max-height: 480px; overflow-y: auto; }
   .legend-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 12px 0 0; padding-top: 12px; border-top: 1px solid var(--border); }
+  .app-selector { display: flex; flex-wrap: wrap; gap: 6px 10px; padding: 8px 12px; margin-bottom: 8px; background: #f7fafc; border-radius: 8px; border: 1px solid #e2e8f0; align-items: center; }
+  .app-selector label { display: flex; align-items: center; gap: 4px; font-size: 12px; cursor: pointer; user-select: none; color: #4a5568; }
+  .app-selector input[type="checkbox"] { width: 14px; height: 14px; accent-color: #667eea; cursor: pointer; }
+  .app-selector .sel-btns { margin-left: auto; display: flex; gap: 4px; }
+  .app-selector .sel-btn { font-size: 11px; padding: 2px 8px; border-radius: 4px; border: 1px solid #cbd5e0; background: #edf2f7; cursor: pointer; color: #4a5568; }
+  .app-selector .sel-btn:hover { background: #667eea; color: #fff; border-color: #667eea; }
+  .axis-range { display: flex; align-items: center; gap: 8px; padding: 4px 0; margin-bottom: 4px; font-size: 12px; color: #4a5568; }
+  .axis-range input[type="range"] { width: 80px; height: 4px; accent-color: #667eea; cursor: pointer; }
+  .axis-range .range-val { min-width: 24px; text-align: center; font-weight: 600; color: #667eea; }
   .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.78rem; font-weight: 600; color: var(--text); }
   .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
   .score-val { font-weight: 600; color: #667eea; }
@@ -192,10 +201,116 @@
 
 <div class="stats-grid" id="statsGrid"><div class="stat-card"><span class="stat-number">3</span><span class="stat-label">评测维度类型</span></div><div class="stat-card"><span class="stat-number">29</span><span class="stat-label">评测场景</span></div><div class="stat-card"><span class="stat-number">12</span><span class="stat-label">AI 应用</span></div><div class="stat-card"><span class="stat-number">145</span><span class="stat-label">客观评测指标</span></div><div class="stat-card"><span class="stat-number">4</span><span class="stat-label">综合体验指标</span></div></div>
 
+<!-- 评测维度 -->
+<div class="container" style="max-width:1200px;margin:0 auto 16px;">
+<section>
+  <div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#63b3ed);">📐</div>
+    <h2>1 评测维度</h2>
+  </div>
+  <p style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">我们采用「场景→子场景→子任务」的三级拆解框架，在八大核心场景下系统构建29类典型子场景，并依据任务复杂度与能力泛化性双重标准甄选代表性评测任务；结合场景适配的客观指标与主观体验维度，实现对智能助手在多模态情境下综合能力的系统化验证与多粒度评估。</p>
+
+  <!-- 1.1 场景客观维度 -->
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#667eea;border-radius:2px;"></span>1.1 场景客观维度</h3>
+    <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">围绕29个子场景的业务特征与体验瓶颈，我们差异化构建了场景适配的客观评价指标体系，以保障评测结果能够有效映射产品在真实使用情境下的客观表现。</p>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">任务类别</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">子类</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">场景分类</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="2">文本理解类</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">关键信息抽取（合同、标书）</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">文档处理</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">表格理解</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">文档处理</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="15">文本生成类</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">日报/周报生成</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">日常办公</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">工作总结</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">日常办公</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">竞品分析</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">调研分析</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">邮件沟通</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">日常办公</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">会议纪要</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">日常办公</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">文本摘要</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">文档处理</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">上级汇报 (PPT 任务)</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">汇报展示</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">即时翻译（文本互译）</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">语言服务</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">面试助手</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">学习教育</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">小红书文案</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">内容创作</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">出题解题</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">学习教育</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">健康建议</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">个人生活</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">表格生成</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">文档处理</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">调研报告</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">汇报展示</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">智能搜索</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">学习教育</td></tr>
+
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="2">图片理解类</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">拍照识物</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">学习教育</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">拍照解题</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">学习教育</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">图片生成类</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">指定风格 P 图</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">个人生活</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">老旧照片焕新</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">个人生活</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">明星合影</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">个人生活</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="2">语音理解类</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">语音总结</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">日常办公</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">即时翻译 (语音理解类)</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">语言服务</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">语音生成类</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">睡前故事</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">内容创作</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="2">视频理解类</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">教服装穿搭 (视频通话类)</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">个人生活</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">出题解题 (视频通话类)</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">学习教育</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="2">视频生成类</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">睡前故事视频</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">内容创作</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">角色扮演/短剧生成</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">内容创作</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- 1.2 场景主观维度 -->
+  <div style="margin-bottom:24px;">
+    <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#48bb78;border-radius:2px;"></span>1.2 场景主观维度</h3>
+    <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">在确立场景客观评价指标的基础上，我们进一步引入「交互体验」、「拟人化」与「效率感知」三项维度，旨在构建主客观协同的评估框架，突破单一效能验证的局限，实现对智能助手综合交互体验质量的系统化主观测评。</p>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">类别</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">二级维度</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">交互体验</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">界面简洁度</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">输入便捷性</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">输出呈现</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">拟人化</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">语言自然度</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">个性化程度</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">主动性与预判</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">效率感知</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">响应速度感知</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">任务完成效率</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">一次性解决率</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <!-- 1.3 APP综合体验维度 -->
+  <div style="margin-bottom:0;">
+    <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#805ad5;border-radius:2px;"></span>1.3 APP综合体验维度</h3>
+    <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">除场景客观维度与场景主观维度外，我们独立构建「APP综合体验维度」（涵盖总体满意度、NPS净推荐值与持续使用意愿），以突破场景级评测的碎片化局限，形成"微观场景效能+宏观全局感知"的立体评估框架，全面量化产品的整体体验水位、用户忠诚度与长期商业价值。</p>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">模态类别</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评测关注点</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">综合体验指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">总体满意度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">对 APP 的整体评价</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">NPS 净推荐值</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">是否愿意推荐给朋友</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">持续使用意愿</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">是否打算长期使用，是否付费</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+</div>
+
+<!-- 评测方法 -->
+<div class="container" style="max-width:1200px;margin:0 auto 16px;">
+<section>
+  <div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#c05621,#ed8936);">📋</div>
+    <h2>2 评测方法</h2>
+  </div>
+  <p style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">本次评测将基于场景客观评测指标、场景主观评测指标、APP综合评测指标三个指标的分值，采用加权平均的方式得出最终的总得分。</p>
+  <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">指标类型</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评估方法</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评分计算方法</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">总分计算方式</th></tr></thead>
+    <tbody>
+      <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">场景客观评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">29个场景下客观维度评测结果平均分</td></tr>
+      <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">场景主观评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">29个场景下主观维度评测结果平均分</td></tr>
+      <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">APP综合评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">19名评测人员对12个app的评测结果平均分</td></tr>
+    </tbody>
+  </table></div>
+</section>
+</div>
+
 <div class="tab-nav">
   <button class="tab-btn" data-tab="experience">APP综合体验维度</button>
   <button class="tab-btn active" data-tab="objective">场景客观维度</button>
   <button class="tab-btn" data-tab="subjective">场景主观维度</button>
+  <button class="tab-btn" data-tab="support">场景支持情况</button>
 </div>
 
 <div class="tab-panel" id="panel-experience">
@@ -624,6 +739,11 @@
 
 <div class="tab-panel" id="panel-subjective">
   <div class="container" id="subjectiveContainer">
+  </div>
+</div>
+
+<div class="tab-panel" id="panel-support">
+  <div class="container" id="supportContainer">
   </div>
 </div>
 
@@ -1639,6 +1759,10 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
       renderSubjective();
       renderedTabs.subjective = true;
     }
+    if (tab === 'support' && !renderedTabs.support) {
+      renderSupport();
+      renderedTabs.support = true;
+    }
   });
 });
 
@@ -1911,6 +2035,9 @@ function renderObjective() {
   html += `</tbody></table></div>
     <div class="highlight-box"><strong>综合表现：</strong>在全部 ${scenes.length} 个评测场景中，<strong>${sorted[0]}</strong>（${appAvgs[sorted[0]].toFixed(2)}）综合均分排名第一，<strong>${sorted[1]}</strong>（${appAvgs[sorted[1]].toFixed(2)}）和 <strong>${sorted[2]}</strong>（${appAvgs[sorted[2]].toFixed(2)}）分列二三位。</div></section>`;
 
+  // Global axis range control
+  html += `<div style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:13px;color:#4a5568;"><span style="font-weight:600;color:#667eea;">⚙ 坐标轴范围</span><span>最小</span><input type="range" min="0" max="4" step="0.5" value="0" oninput="updateObjAxis()" style="width:80px;accent-color:#667eea;"><span class="range-val" id="obj-min-g">0</span><span>最大</span><input type="range" min="1" max="5" step="0.5" value="5" oninput="updateObjAxis()" style="width:80px;accent-color:#667eea;"><span class="range-val" id="obj-max-g">5</span><span style="color:#a0aec0;font-size:11px;margin-left:8px;">缩小范围可放大差异</span></div>`;
+
   // Per-scene sections
   scenes.forEach((sceneName, idx) => {
     const scene = embeddedData[sceneName];
@@ -1931,6 +2058,8 @@ function renderObjective() {
       <div class="dir-section">
         <div class="dir-header"><h3>${dims.length} 个评测维度</h3>
         <span class="dir-count">场景 ${idx+1}/${scenes.length}</span></div>
+        <div class="app-selector" id="obj-sel-${idx}">${validApps.map(n => { const ci = appNames.indexOf(n); const checked = (n === '千问' || n === '豆包') ? 'checked' : ''; return `<label><input type="checkbox" value="${n}" ${checked} onchange="toggleObjRadar(${idx})"><span class="legend-dot" style="background:${colorPalette[ci]}"></span>${n}</label>`; }).join('')}<span class="sel-btns"><button class="sel-btn" onclick="selAll('obj-sel-${idx}', true, toggleObjRadar, ${idx})">全选</button><button class="sel-btn" onclick="selAll('obj-sel-${idx}', false, toggleObjRadar, ${idx})">取消全选</button></span></div>
+        
         <div class="radar-row" style="position:relative;display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:16px;">
           <div class="radar-wrap"><canvas id="${chartId}"></canvas></div>
           <span class="table-toggle" onclick="toggleTable(this)">数据表 ▸</span>
@@ -1967,6 +2096,8 @@ function renderObjective() {
 
   container.innerHTML = html;
 
+  // Store chart instances for toggle
+  const objCharts = {};
   // Render radar charts
   scenes.forEach((sceneName, idx) => {
     const scene = embeddedData[sceneName];
@@ -1985,9 +2116,12 @@ function renderObjective() {
     });
     const ctx = document.getElementById(`radar-${idx}`);
     if (!ctx) return;
-    new Chart(ctx, {
+    const sel = document.getElementById(`obj-sel-${idx}`);
+    const selected = sel ? Array.from(sel.querySelectorAll('input:checked')).map(i => i.value) : va;
+    const filtered = datasets.filter(d => selected.includes(d.label));
+    objCharts[idx] = new Chart(ctx, {
       type: 'radar',
-      data: { labels: dims, datasets },
+      data: { labels: dims, datasets: filtered },
       options: {
         responsive: true, maintainAspectRatio: false, devicePixelRatio: 2,
         plugins: {
@@ -2010,6 +2144,58 @@ function renderObjective() {
       }
     });
   });
+
+  // Toggle objective radar
+  window.toggleObjRadar = function(idx) {
+    const sceneName = scenes[idx];
+    const scene = embeddedData[sceneName];
+    const dims = scene.dimensions;
+    const va = appNames.filter(n => scene.data[n] && scene.data[n].some(v => v !== null));
+    const sel = document.getElementById(`obj-sel-${idx}`);
+    const selected = Array.from(sel.querySelectorAll('input:checked')).map(i => i.value);
+    const allDatasets = va.map(name => {
+      const ci = appNames.indexOf(name);
+      const c = colorPalette[ci];
+      return {
+        label: name,
+        data: scene.data[name].map(v => v !== null ? v : 0),
+        backgroundColor: 'transparent',
+        borderColor: c, pointBackgroundColor: c, pointBorderColor: '#fff',
+        pointRadius: 4, pointHoverRadius: 7, pointBorderWidth: 2, borderWidth: 1.5
+      };
+    });
+    const chart = objCharts[idx];
+    if (!chart) return;
+    chart.data.datasets = allDatasets.filter(d => selected.includes(d.label));
+    // Apply current axis range
+    const gMinEl = document.getElementById('obj-min-g');
+    const gMaxEl = document.getElementById('obj-max-g');
+    if (gMinEl && gMaxEl) {
+      chart.options.scales.r.min = parseFloat(gMinEl.textContent);
+      chart.options.scales.r.max = parseFloat(gMaxEl.textContent);
+    }
+    chart.update();
+  };
+
+  // Update all objective radar axis range (global)
+  window.updateObjAxis = function() {
+    const minEl = document.getElementById('obj-min-g');
+    const maxEl = document.getElementById('obj-max-g');
+    const container = minEl.closest('div[style]');
+    const inputs = container.querySelectorAll('input[type="range"]');
+    let minVal = parseFloat(inputs[0].value);
+    let maxVal = parseFloat(inputs[1].value);
+    if (minVal >= maxVal) { minVal = maxVal - 0.5; inputs[0].value = minVal; }
+    document.getElementById('obj-min-g').textContent = minVal;
+    document.getElementById('obj-max-g').textContent = maxVal;
+    const stepSize = (maxVal - minVal) > 2 ? 1 : 0.5;
+    Object.values(objCharts).forEach(chart => {
+      chart.options.scales.r.min = minVal;
+      chart.options.scales.r.max = maxVal;
+      chart.options.scales.r.ticks.stepSize = stepSize;
+      chart.update();
+    });
+  };
 }
 
 
@@ -2049,6 +2235,9 @@ function renderSubjective() {
   html += `</tbody></table></div>
     <div class="highlight-box"><strong>综合表现：</strong>在全部 ${scenes.length} 个评测场景中，<strong>${sorted[0]}</strong>（${appAvgs[sorted[0]].toFixed(2)}）综合均分排名第一，<strong>${sorted[1]}</strong>（${appAvgs[sorted[1]].toFixed(2)}）和 <strong>${sorted[2]}</strong>（${appAvgs[sorted[2]].toFixed(2)}）分列二三位。</div></section>`;
 
+  // Global axis range control
+  html += `<div style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:13px;color:#4a5568;"><span style="font-weight:600;color:#667eea;">⚙ 坐标轴范围</span><span>最小</span><input type="range" min="0" max="4" step="0.5" value="0" oninput="updateSubAxis()" style="width:80px;accent-color:#667eea;"><span class="range-val" id="sub-min-g">0</span><span>最大</span><input type="range" min="1" max="5" step="0.5" value="5" oninput="updateSubAxis()" style="width:80px;accent-color:#667eea;"><span class="range-val" id="sub-max-g">5</span><span style="color:#a0aec0;font-size:11px;margin-left:8px;">缩小范围可放大差异</span></div>`;
+
   // Per-scene sections (no modality grouping)
   scenes.forEach((sceneName, globalIdx) => {
     const scene = subjectiveData[sceneName];
@@ -2070,6 +2259,8 @@ function renderSubjective() {
       <div class="dir-section">
         <div class="dir-header"><h3>${dims.length} 个评测维度</h3>
         <span class="dir-count">场景 ${globalIdx+1}/${totalScenes}</span></div>
+        <div class="app-selector" id="sub-sel-${globalIdx}">${validApps.map(n => { const ci = appNames.indexOf(n); const checked = (n === '千问' || n === '豆包') ? 'checked' : ''; return `<label><input type="checkbox" value="${n}" ${checked} onchange="toggleSubRadar(${globalIdx})"><span class="legend-dot" style="background:${colorPalette[ci]}"></span>${n}</label>`; }).join('')}<span class="sel-btns"><button class="sel-btn" onclick="selAll('sub-sel-${globalIdx}', true, toggleSubRadar, ${globalIdx})">全选</button><button class="sel-btn" onclick="selAll('sub-sel-${globalIdx}', false, toggleSubRadar, ${globalIdx})">取消全选</button></span></div>
+        
         <div class="radar-row" style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:16px;">
           <div class="radar-wrap"><canvas id="${chartId1}"></canvas></div>
           <div class="radar-wrap"><canvas id="${chartId2}"></canvas></div>
@@ -2129,11 +2320,16 @@ function renderSubjective() {
 
   container.innerHTML = html;
 
+  // Store chart instances for toggle
+  const subCharts1 = {};
+  const subCharts2 = {};
   // Render radar charts (first-level 3-dim + second-level 9-dim)
   scenes.forEach((sceneName, globalIdx) => {
     const scene = subjectiveData[sceneName];
     const dims = scene.dimensions;
     const level1Dims = ['交互体验', '拟人化', '效率感知'];
+    const sel = document.getElementById(`sub-sel-${globalIdx}`);
+    const selected = sel ? Array.from(sel.querySelectorAll('input:checked')).map(i => i.value) : null;
 
     // First-level radar (3 dimensions)
     const va1 = appNames.filter(n => {
@@ -2152,11 +2348,12 @@ function renderSubjective() {
         pointRadius: 4, pointHoverRadius: 7, pointBorderWidth: 2, borderWidth: 2
       };
     });
+    const filtered1 = selected ? datasets1.filter(d => selected.includes(d.label)) : datasets1;
     const ctx1 = document.getElementById(`sub-radar1-${globalIdx+1}`);
     if (ctx1) {
-      new Chart(ctx1, {
+      subCharts1[globalIdx] = new Chart(ctx1, {
         type: 'radar',
-        data: { labels: level1Dims, datasets: datasets1 },
+        data: { labels: level1Dims, datasets: filtered1 },
         options: {
           responsive: true, maintainAspectRatio: false, devicePixelRatio: 2,
           plugins: {
@@ -2194,11 +2391,12 @@ function renderSubjective() {
         pointRadius: 3, pointHoverRadius: 6, pointBorderWidth: 2, borderWidth: 1.5
       };
     });
+    const filtered2 = selected ? datasets2.filter(d => selected.includes(d.label)) : datasets2;
     const ctx2 = document.getElementById(`sub-radar2-${globalIdx+1}`);
     if (ctx2) {
-      new Chart(ctx2, {
+      subCharts2[globalIdx] = new Chart(ctx2, {
         type: 'radar',
-        data: { labels: dims, datasets: datasets2 },
+        data: { labels: dims, datasets: filtered2 },
         options: {
           responsive: true, maintainAspectRatio: false, devicePixelRatio: 2,
           plugins: {
@@ -2223,9 +2421,193 @@ function renderSubjective() {
       });
     }
   });
+
+  // Toggle subjective radar
+  window.toggleSubRadar = function(globalIdx) {
+    const sceneName = scenes[globalIdx];
+    const scene = subjectiveData[sceneName];
+    const dims = scene.dimensions;
+    const level1Dims = ['交互体验', '拟人化', '效率感知'];
+    const sel = document.getElementById(`sub-sel-${globalIdx}`);
+    const selected = Array.from(sel.querySelectorAll('input:checked')).map(i => i.value);
+
+    // Rebuild first-level datasets
+    const va1 = appNames.filter(n => {
+      const comp = scene.composite[n];
+      return comp && (comp['交互体验'] !== null || comp['拟人化'] !== null || comp['效率感知'] !== null);
+    });
+    const allD1 = va1.map(name => {
+      const ci = appNames.indexOf(name);
+      const c = colorPalette[ci];
+      const comp = scene.composite[name];
+      return {
+        label: name,
+        data: level1Dims.map(d => (comp && comp[d] !== null) ? comp[d] : 0),
+        backgroundColor: 'transparent',
+        borderColor: c, pointBackgroundColor: c, pointBorderColor: '#fff',
+        pointRadius: 4, pointHoverRadius: 7, pointBorderWidth: 2, borderWidth: 2
+      };
+    });
+    const chart1 = subCharts1[globalIdx];
+    if (chart1) {
+      chart1.data.datasets = allD1.filter(d => selected.includes(d.label));
+      // Apply current axis range
+      const gMinEl = document.getElementById('sub-min-g');
+      const gMaxEl = document.getElementById('sub-max-g');
+      if (gMinEl && gMaxEl) {
+        const minV = parseFloat(gMinEl.textContent), maxV = parseFloat(gMaxEl.textContent);
+        chart1.options.scales.r.min = minV;
+        chart1.options.scales.r.max = maxV;
+        chart1.options.scales.r.ticks.stepSize = (maxV - minV) > 2 ? 1 : 0.5;
+      }
+      chart1.update();
+    }
+
+    // Rebuild second-level datasets
+    const va2 = appNames.filter(n => scene.data[n] && scene.data[n].some(v => v !== null));
+    const allD2 = va2.map(name => {
+      const ci = appNames.indexOf(name);
+      const c = colorPalette[ci];
+      return {
+        label: name,
+        data: scene.data[name].map(v => v !== null ? v : 0),
+        backgroundColor: 'transparent',
+        borderColor: c, pointBackgroundColor: c, pointBorderColor: '#fff',
+        pointRadius: 3, pointHoverRadius: 6, pointBorderWidth: 2, borderWidth: 1.5
+      };
+    });
+    const chart2 = subCharts2[globalIdx];
+    if (chart2) {
+      chart2.data.datasets = allD2.filter(d => selected.includes(d.label));
+      // Apply current axis range
+      const gMinEl = document.getElementById('sub-min-g');
+      const gMaxEl = document.getElementById('sub-max-g');
+      if (gMinEl && gMaxEl) {
+        const minV = parseFloat(gMinEl.textContent), maxV = parseFloat(gMaxEl.textContent);
+        chart2.options.scales.r.min = minV;
+        chart2.options.scales.r.max = maxV;
+        chart2.options.scales.r.ticks.stepSize = (maxV - minV) > 2 ? 1 : 0.5;
+      }
+      chart2.update();
+    }
+  };
+
+  // Update all subjective radar axis range (global)
+  window.updateSubAxis = function() {
+    const minEl = document.getElementById('sub-min-g');
+    const maxEl = document.getElementById('sub-max-g');
+    const container = minEl.closest('div[style]');
+    const inputs = container.querySelectorAll('input[type="range"]');
+    let minVal = parseFloat(inputs[0].value);
+    let maxVal = parseFloat(inputs[1].value);
+    if (minVal >= maxVal) { minVal = maxVal - 0.5; inputs[0].value = minVal; }
+    document.getElementById('sub-min-g').textContent = minVal;
+    document.getElementById('sub-max-g').textContent = maxVal;
+    const stepSize = (maxVal - minVal) > 2 ? 1 : 0.5;
+    [subCharts1, subCharts2].forEach(charts => {
+      Object.values(charts).forEach(chart => {
+        chart.options.scales.r.min = minVal;
+        chart.options.scales.r.max = maxVal;
+        chart.options.scales.r.ticks.stepSize = stepSize;
+        chart.update();
+      });
+    });
+  };
+}
+
+/* ============ Scene Support ============ */
+function renderSupport() {
+  const scenes = Object.keys(embeddedData);
+  const container = document.getElementById('supportContainer');
+  let html = '';
+
+  // Overview stats
+  const supportCounts = {};
+  appNames.forEach(n => {
+    supportCounts[n] = scenes.filter(s => {
+      const scores = embeddedData[s].data[n];
+      return scores && scores.some(v => v !== null);
+    }).length;
+  });
+  const sorted = appNames.slice().sort((a,b) => supportCounts[b] - supportCounts[a]);
+
+  html += `<section><div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#38a169,#68d391);">✓</div>
+    <h2>APP 场景支持情况总览</h2></div>
+
+    <div class="table-wrap"><table><thead><tr><th>排名</th><th>APP</th><th>支持场景数</th><th>支持率</th></tr></thead><tbody>`;
+  sorted.forEach((name, i) => {
+    const rc = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+    const cnt = supportCounts[name];
+    const pct = (cnt / scenes.length * 100).toFixed(1);
+    html += `<tr><td class="${rc}">${i+1}</td>
+      <td><strong style="display:flex;align-items:center;gap:8px;"><img src="${appLogoMap[name]}" style="width:24px;height:24px;border-radius:4px;object-fit:cover;">${name}</strong></td>
+      <td>${cnt} / ${scenes.length}</td>
+      <td><div style="display:flex;align-items:center;gap:8px;"><div style="flex:1;height:8px;background:#edf2f7;border-radius:4px;max-width:120px;"><div style="width:${pct}%;height:100%;background:linear-gradient(90deg,#667eea,#764ba2);border-radius:4px;"></div></div><span style="font-weight:600;color:#667eea;">${pct}%</span></div></td></tr>`;
+  });
+  html += `</tbody></table></div></section>`;
+
+  // Support matrix
+  html += `<section><div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#63b3ed);">⊡</div>
+    <h2>场景支持矩阵</h2></div>
+    <p class="section-desc">纵轴为APP，横轴为场景。绿色表示支持，灰色表示不支持。</p>
+    <div style="overflow-x:auto;"><table style="border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#fff;min-width:80px;">APP</th>`;
+  scenes.forEach((s, si) => {
+    html += `<th style="writing-mode:vertical-lr;text-orientation:mixed;max-width:28px;min-width:28px;padding:4px 2px;font-size:10px;white-space:nowrap;">${si+1}</th>`;
+  });
+  html += `<th style="font-size:10px;">支持数</th></tr></thead><tbody>`;
+
+  sorted.forEach(name => {
+    html += `<tr><td style="position:sticky;left:0;z-index:2;background:#fff;font-weight:600;white-space:nowrap;"><span style="display:flex;align-items:center;gap:4px;"><img src="${appLogoMap[name]}" style="width:18px;height:18px;border-radius:3px;object-fit:cover;">${name}</span></td>`;
+    let cnt = 0;
+    scenes.forEach(s => {
+      const scores = embeddedData[s].data[name];
+      const supported = scores && scores.some(v => v !== null);
+      if (supported) cnt++;
+      const bg = supported ? '#c6f6d5' : '#edf2f7';
+      const txt = supported ? '✓' : '—';
+      const clr = supported ? '#276749' : '#cbd5e0';
+      html += `<td style="background:${bg};color:${clr};text-align:center;padding:3px;">${txt}</td>`;
+    });
+    html += `<td style="font-weight:700;text-align:center;color:#667eea;">${cnt}</td></tr>`;
+  });
+  html += `</tbody></table></div>`;
+  // Scene number legend
+  html += `<div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:#4a5568;">`;
+  scenes.forEach((s, si) => {
+    html += `<span>${si+1}. ${s}</span>`;
+  });
+  html += `</div></section>`;
+
+  // Per-APP unsupported scenes detail
+  html += `<section><div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#c53030,#fc8181);">✗</div>
+    <h2>各APP不支持的场景</h2></div>`;
+  sorted.forEach(name => {
+    const unsupported = scenes.filter(s => {
+      const scores = embeddedData[s].data[name];
+      return !scores || scores.every(v => v === null);
+    });
+    if (unsupported.length === 0) {
+      html += `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;margin:4px 0;background:#f0fff4;border-radius:8px;border:1px solid #c6f6d5;font-size:13px;"><img src="${appLogoMap[name]}" style="width:20px;height:20px;border-radius:3px;object-fit:cover;"><strong>${name}</strong><span style="color:#276749;">全部场景均支持</span></div>`;
+    } else {
+      html += `<div style="padding:10px 12px;margin:6px 0;background:#fff5f5;border-radius:8px;border:1px solid #fed7d7;"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><img src="${appLogoMap[name]}" style="width:20px;height:20px;border-radius:3px;object-fit:cover;"><strong>${name}</strong><span style="color:#c53030;font-size:12px;">不支持 ${unsupported.length} 个场景</span></div><div style="display:flex;flex-wrap:wrap;gap:4px;">${unsupported.map(s => `<span style="font-size:11px;padding:2px 8px;background:#fff;border:1px solid #feb2b2;border-radius:4px;color:#c53030;">${s}</span>`).join('')}</div></div>`;
+    }
+  });
+  html += `</section>`;
+
+  container.innerHTML = html;
 }
 
 /* ============ Table Toggle ============ */
+function selAll(selectorId, checked, callback, idx) {
+  const el = document.getElementById(selectorId);
+  if (!el) return;
+  el.querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = checked; });
+  callback(idx);
+}
+
 function toggleTable(btn) {
   // Case 1: inside .radar-row -> find next .sub-table-wrap sibling
   const radarRow = btn.closest('.radar-row');
