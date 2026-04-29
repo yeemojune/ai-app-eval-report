@@ -113,7 +113,7 @@
   .sub-table-wrap td:first-child { text-align: left; font-weight: 600; color: var(--text); }
   .sub-table-wrap tbody tr:hover { background: #f0f7ff; }
   .radar-row { position: relative; }
-  .table-toggle { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 3px 12px; font-size: 0.72rem; color: #718096; cursor: pointer; transition: all 0.2s; user-select: none; z-index: 2; }
+  .table-toggle { position: absolute; left: 8px; bottom: 8px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 3px 12px; font-size: 0.72rem; color: #718096; cursor: pointer; transition: all 0.2s; user-select: none; z-index: 2; }
   .table-toggle:hover { background: rgba(0,0,0,0.1); color: #4a5568; }
   .table-toggle.active { background: rgba(49,130,206,0.1); border-color: rgba(49,130,206,0.3); color: #3182ce; }
   .sub-table-wrap.collapsed { display: none; }
@@ -2188,6 +2188,8 @@ document.addEventListener('DOMContentLoaded', function() {
   renderStats();
   renderExperience();
   renderedTabs.experience = true;
+  renderObjective();
+  renderedTabs.objective = true;
 });
 </script>
 
