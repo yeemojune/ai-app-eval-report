@@ -217,85 +217,21 @@
 
 <div class="stats-grid" id="statsGrid"><div class="stat-card"><span class="stat-number">3</span><span class="stat-label">评测维度类型</span></div><div class="stat-card"><span class="stat-number">29</span><span class="stat-label">评测场景</span></div><div class="stat-card"><span class="stat-number">12</span><span class="stat-label">AI 应用</span></div><div class="stat-card"><span class="stat-number">145</span><span class="stat-label">客观评测指标</span></div><div class="stat-card"><span class="stat-number">4</span><span class="stat-label">综合体验指标</span></div></div>
 
-<!-- 评测维度 -->
-<div class="container" style="max-width:1200px;margin:0 auto 16px;">
-<section>
-  <div class="section-header">
-    <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#63b3ed);">📐</div>
-    <h2>1 评测维度</h2>
-  </div>
-  <p style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">我们采用「场景→子场景→子任务」的三级拆解框架，在八大核心场景下系统构建29类典型子场景，并依据任务复杂度与能力泛化性双重标准甄选代表性评测任务；结合场景适配的客观指标与主观体验维度，实现对智能助手在多模态情境下综合能力的系统化验证与多粒度评估。</p>
+<p style="text-align:center;color:#a0aec0;font-size:12px;margin:0 0 8px;">评测版本截止日期：2026.4.15 ｜ 报告更新时间：2026.4.30</p>
 
-  <!-- 1.1 场景客观维度 -->
-  <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#667eea;border-radius:2px;"></span>1.1 场景客观维度</h3>
-    <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">围绕29个子场景的业务特征与体验瓶颈，我们差异化构建了场景适配的客观评价指标体系，以保障评测结果能够有效映射产品在真实使用情境下的客观表现。</p>
-    <div id="objDimCards"></div>
-  </div>
 
-  <!-- 1.2 场景主观维度 -->
-  <div style="margin-bottom:24px;">
-    <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#48bb78;border-radius:2px;"></span>1.2 场景主观维度</h3>
-    <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">在确立场景客观评价指标的基础上，我们进一步引入「交互体验」、「拟人化」与「效率感知」三项维度，旨在构建主客观协同的评估框架，突破单一效能验证的局限，实现对智能助手综合交互体验质量的系统化主观测评。</p>
-    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
-      <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">类别</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">二级维度</th></tr></thead>
-      <tbody>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">交互体验</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">界面简洁度</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">输入便捷性</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">输出呈现</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">拟人化</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">语言自然度</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">个性化程度</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">主动性与预判</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">效率感知</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">响应速度感知</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">任务完成效率</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">一次性解决率</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-
-  <!-- 1.3 APP综合体验维度 -->
-  <div style="margin-bottom:0;">
-    <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#805ad5;border-radius:2px;"></span>1.3 APP综合体验维度</h3>
-    <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">除场景客观维度与场景主观维度外，我们独立构建「APP综合体验维度」（涵盖总体满意度、NPS净推荐值与持续使用意愿），以突破场景级评测的碎片化局限，形成"微观场景效能+宏观全局感知"的立体评估框架，全面量化产品的整体体验水位、用户忠诚度与长期商业价值。</p>
-    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
-      <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">模态类别</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评测关注点</th></tr></thead>
-      <tbody>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">综合体验指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">总体满意度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">对 APP 的整体评价</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">NPS 净推荐值</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">是否愿意推荐给朋友</td></tr>
-        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">持续使用意愿</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">是否打算长期使用，是否付费</td></tr>
-      </tbody>
-    </table></div>
-  </div>
-</section>
-</div>
-
-<!-- 评测方法 -->
-<div class="container" style="max-width:1200px;margin:0 auto 16px;">
-<section>
-  <div class="section-header">
-    <div class="icon" style="background:linear-gradient(135deg,#c05621,#ed8936);">📋</div>
-    <h2>2 评测方法</h2>
-  </div>
-  <p style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">本次评测将基于场景客观评测指标、场景主观评测指标、APP综合评测指标三个指标的分值，采用加权平均的方式得出最终的总得分。</p>
-  <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
-    <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">指标类型</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评估方法</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评分计算方法</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">总分计算方式</th></tr></thead>
-    <tbody>
-      <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">场景客观评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">29个场景下客观维度评测结果平均分</td></tr>
-      <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">场景主观评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">29个场景下主观维度评测结果平均分</td></tr>
-      <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">APP综合评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">19名评测人员对12个app的评测结果平均分</td></tr>
-    </tbody>
-  </table></div>
-</section>
-</div>
 
 <!-- 评测结论 -->
 <div class="container" style="max-width:1200px;margin:0 auto 16px;">
 <section>
   <div class="section-header">
     <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#805ad5);">🏆</div>
-    <h2>3 评测结论</h2>
+    <h2>评测结论</h2>
   </div>
-  <p style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均，得出各APP最终综合评分（考量场景覆盖度）。您可通过下方滑块自由调整三项指标的权重占比。</p>
+  <p id="conclusionDesc" style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均，得出各APP最终综合评分（考量场景覆盖度）。您可通过下方滑块自由调整三项指标的权重占比。</p>
+
+  <!-- 均分计算模式 -->
+  <div id="conclusionRankBar" style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:13px;color:#4a5568;"><span style="font-weight:600;color:#805ad5;">📐 均分计算</span><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="all29" checked onchange="switchConclusionRank('all29')"><span>考察场景覆盖</span></label><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="ignore" onchange="switchConclusionRank('ignore')"><span>忽略场景覆盖</span></label><span style="color:#a0aec0;font-size:11px;margin-left:8px;">切换计算方式查看排名变化</span></div>
 
   <!-- 权重滑块 -->
   <div style="background:#f7fafc;border-radius:12px;border:1px solid #e2e8f0;padding:20px 24px;margin:0 0 24px;">
@@ -335,6 +271,7 @@
   <button class="tab-btn active" data-tab="objective">场景客观维度</button>
   <button class="tab-btn" data-tab="subjective">场景主观维度</button>
   <button class="tab-btn" data-tab="support">场景支持情况</button>
+  <button class="tab-btn" data-tab="method">评测维度与方法</button>
 </div>
 
 <div class="tab-panel" id="panel-experience">
@@ -420,6 +357,77 @@
 
 <div class="tab-panel" id="panel-support">
   <div class="container" id="supportContainer">
+  </div>
+</div>
+
+<div class="tab-panel" id="panel-method">
+  <div class="container" style="max-width:1200px;margin:0 auto 16px;">
+  <section>
+    <div class="section-header">
+      <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#63b3ed);">📐</div>
+      <h2>评测维度</h2>
+    </div>
+    <p style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">我们采用「场景→子场景→子任务」的三级拆解框架，在八大核心场景下系统构建29类典型子场景，并依据任务复杂度与能力泛化性双重标准甄选代表性评测任务；结合场景适配的客观指标与主观体验维度，实现对智能助手在多模态情境下综合能力的系统化验证与多粒度评估。</p>
+
+    <!-- 场景客观维度 -->
+    <div style="margin-bottom:24px;">
+      <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#667eea;border-radius:2px;"></span>场景客观维度</h3>
+      <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">围绕29个子场景的业务特征与体验瓶颈，我们差异化构建了场景适配的客观评价指标体系，以保障评测结果能够有效映射产品在真实使用情境下的客观表现。</p>
+      <div id="objDimCards"></div>
+    </div>
+
+    <!-- 场景主观维度 -->
+    <div style="margin-bottom:24px;">
+      <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#48bb78;border-radius:2px;"></span>场景主观维度</h3>
+      <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">在确立场景客观评价指标的基础上，我们进一步引入「交互体验」、「拟人化」与「效率感知」三项维度，旨在构建主客观协同的评估框架，突破单一效能验证的局限，实现对智能助手综合交互体验质量的系统化主观测评。</p>
+      <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">类别</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">二级维度</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">交互体验</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">界面简洁度</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">输入便捷性</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">输出呈现</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">拟人化</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">语言自然度</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">个性化程度</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">主动性与预判</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">效率感知</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">响应速度感知</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">任务完成效率</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">一次性解决率</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <!-- APP综合体验维度 -->
+    <div style="margin-bottom:0;">
+      <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#805ad5;border-radius:2px;"></span>APP综合体验维度</h3>
+      <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">除场景客观维度与场景主观维度外，我们独立构建「APP综合体验维度」（涵盖总体满意度、NPS净推荐值与持续使用意愿），以突破场景级评测的碎片化局限，形成"微观场景效能+宏观全局感知"的立体评估框架，全面量化产品的整体体验水位、用户忠诚度与长期商业价值。</p>
+      <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">模态类别</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评测关注点</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;" rowspan="3">综合体验指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">总体满意度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">对 APP 的整体评价</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">NPS 净推荐值</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">是否愿意推荐给朋友</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">持续使用意愿</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">是否打算长期使用，是否付费</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+  </div>
+
+  <div class="container" style="max-width:1200px;margin:0 auto 16px;">
+  <section>
+    <div class="section-header">
+      <div class="icon" style="background:linear-gradient(135deg,#c05621,#ed8936);">📋</div>
+      <h2>评测方法</h2>
+    </div>
+    <p style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">本次评测将基于场景客观评测指标、场景主观评测指标、APP综合评测指标三个指标的分值，采用加权平均的方式得出最终的总得分。</p>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">指标类型</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评估方法</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">评分计算方法</th><th style="padding:8px 12px;text-align:left;border-bottom:2px solid #cbd5e0;">总分计算方式</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">场景客观评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">29个场景下客观维度评测结果平均分</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">场景主观评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">29个场景下主观维度评测结果平均分</td></tr>
+        <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">APP综合评测指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">人类裁判评分</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">5分制</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;">190名评测人员对12个app的评测结果平均分</td></tr>
+      </tbody>
+    </table></div>
+  </section>
   </div>
 </div>
 
@@ -2238,19 +2246,32 @@ function renderSupport() {
 /* ============ Rank Mode Switch ============ */
 function switchObjRank(mode) {
   objRankMode = mode;
+  conclusionRankMode = mode;
   renderObjective();
+  updateConclusion(false);
 }
 function switchSubRank(mode) {
   subRankMode = mode;
+  conclusionRankMode = mode;
   renderSubjective();
+  updateConclusion(false);
 }
 function sortConclusion(key) {
   conclusionSortKey = key;
   updateConclusion(false);
 }
+function switchConclusionRank(mode) {
+  conclusionRankMode = mode;
+  objRankMode = mode;
+  subRankMode = mode;
+  renderObjective();
+  renderSubjective();
+  updateConclusion(false);
+}
 
 /* ============ Conclusion ============ */
 let conclusionChartInstance = null;
+let conclusionRankMode = 'all29'; // 'all29' or 'ignore'
 let conclusionSortKey = 'final'; // 'obj' | 'sub' | 'exp' | 'final'
 let conclusionRafId = null;
 
@@ -2328,6 +2349,14 @@ function updateConclusion(animate) {
   document.getElementById('wObjVal').textContent = Math.round(wObj * 100) + '%';
   document.getElementById('wSubVal').textContent = Math.round(wSub * 100) + '%';
   document.getElementById('wExpVal').textContent = Math.round(wExp * 100) + '%';
+
+  // Sync description text and radio buttons with conclusionRankMode
+  const descEl = document.getElementById('conclusionDesc');
+  if (descEl) descEl.textContent = conclusionRankMode === 'all29'
+    ? '基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均，得出各APP最终综合评分（考量场景覆盖度）。您可通过下方滑块自由调整三项指标的权重占比。'
+    : '基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均，得出各APP最终综合评分（忽略场景覆盖度）。您可通过下方滑块自由调整三项指标的权重占比。';
+  const radios = document.querySelectorAll('input[name="conclusionRankMode"]');
+  radios.forEach(r => { r.checked = (r.value === conclusionRankMode); });
 
   const { objScores, subScores, expScores } = computeDimensionScores();
 
@@ -2433,7 +2462,7 @@ function updateConclusion(animate) {
       },
       animation: animate ? {
         onComplete: function() {
-          // Position logos on bars
+          // Position logos + score labels on bars
           const chart = this;
           const meta = chart.getDatasetMeta(0);
           const logosEl = document.getElementById('conclusionLogos');
@@ -2445,10 +2474,17 @@ function updateConclusion(animate) {
             logo.src = appLogoMap[d.name];
             logo.style.cssText = 'position:absolute;width:28px;height:28px;border-radius:5px;object-fit:cover;pointer-events:none;';
             const x = bar.x - 14;
-            const y = bar.y - 34;
+            const y = bar.y - 52;
             logo.style.left = x + 'px';
             logo.style.top = y + 'px';
             logosEl.appendChild(logo);
+            // Score label
+            const scoreLabel = document.createElement('div');
+            scoreLabel.textContent = d[chartDataKey].toFixed(2);
+            scoreLabel.style.cssText = 'position:absolute;width:48px;text-align:center;font-size:11px;font-weight:700;color:#2d3748;pointer-events:none;';
+            scoreLabel.style.left = (bar.x - 24) + 'px';
+            scoreLabel.style.top = (bar.y - 18) + 'px';
+            logosEl.appendChild(scoreLabel);
           });
         }
       } : false,
@@ -2474,7 +2510,7 @@ function updateConclusion(animate) {
     tableEl.innerHTML = html;
   }
 
-  // Position logos when no animation (slider drag)
+  // Position logos + score labels when no animation (slider drag)
   if (!animate) {
     const chart = conclusionChartInstance;
     if (chart) {
@@ -2488,10 +2524,17 @@ function updateConclusion(animate) {
           logo.src = appLogoMap[d.name];
           logo.style.cssText = 'position:absolute;width:28px;height:28px;border-radius:5px;object-fit:cover;pointer-events:none;';
           const x = bar.x - 14;
-          const y = bar.y - 34;
+          const y = bar.y - 52;
           logo.style.left = x + 'px';
           logo.style.top = y + 'px';
           logosEl.appendChild(logo);
+          // Score label
+          const scoreLabel = document.createElement('div');
+          scoreLabel.textContent = d[chartDataKey].toFixed(2);
+          scoreLabel.style.cssText = 'position:absolute;width:48px;text-align:center;font-size:11px;font-weight:700;color:#2d3748;pointer-events:none;';
+          scoreLabel.style.left = (bar.x - 24) + 'px';
+          scoreLabel.style.top = (bar.y - 18) + 'px';
+          logosEl.appendChild(scoreLabel);
         });
       }
     }
