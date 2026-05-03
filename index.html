@@ -236,7 +236,7 @@
         <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#805ad5);">🏆</div>
         <h2>评测结论</h2>
       </div>
-      <p id="conclusionDesc" style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;"><strong>综合最终结果</strong>：基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均结果看，豆包（3.84）位列整体榜单第一名，千问（3.73）在三项指标中均排名前三，以较小差距位列综合最终结果的第二名。<br>在APP综合体验维度下，DeepSeek（4.11）在APP综合体验中排名第一，豆包（3.72）和 千问（3.59）分列二三位；<br>在场景客观维度下，在全部 29 个评测场景中，豆包（3.94）综合均分排名第一，千问（3.83）和 元宝（3.65）分列二三位；<br>在场景主观维度下，在全部 29 个评测场景中，豆包（3.86）综合均分排名第一，千问（3.76）和 智谱清言（3.68）分列二三位。</p>
+      <p id="conclusionDesc" style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;"><strong>综合最终结果</strong>：基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均结果看，豆包（3.84）位列整体榜单第一名，千问（3.73）在三项指标中均排名前三，以较小差距位列综合最终结果的第二名。<br>在APP综合体验维度下，DeepSeek（4.11）在APP综合体验中排名第一，豆包（3.72）和 千问（3.59）分列二三位；<br>在场景客观维度下，在全部 29 个评测场景中，豆包（3.94）综合均分排名第一，千问（3.83）和 元宝（3.65）分列二三位；<br>在场景主观维度下，在全部 29 个评测场景中，豆包（3.86）综合均分排名第一，千问（3.76）和 智谱清言（3.68）分列二三位。<br><br><strong>场景覆盖情况</strong>：豆包覆盖全部的29个子场景，千问和智谱均支持28个子场景（不支持语音总结功能），DeepSeek的场景覆盖度倒数第一，仅支持29个子场景中的17个。</p>
 
       <!-- 均分计算模式 -->
       <div id="conclusionRankBar" style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:14px;color:#4a5568;"><span style="font-weight:600;color:#805ad5;">📐 均分计算</span><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="all29" checked onchange="switchConclusionRank('all29')"><span>考察场景覆盖</span></label><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="ignore" onchange="switchConclusionRank('ignore')"><span>忽略场景覆盖</span></label><span style="color:#a0aec0;font-size:14px;margin-left:8px;">切换计算方式查看排名变化</span></div>
@@ -2392,7 +2392,7 @@ function updateConclusion(animate) {
   // Sync description text and radio buttons with conclusionRankMode
   const descEl = document.getElementById('conclusionDesc');
   if (descEl) descEl.innerHTML = conclusionRankMode === 'all29'
-    ? '<strong>综合最终结果</strong>：基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均结果看，豆包（3.84）位列整体榜单第一名，千问（3.73）在三项指标中均排名前三，以较小差距位列综合最终结果的第二名。<br>在APP综合体验维度下，DeepSeek（4.11）在APP综合体验中排名第一，豆包（3.72）和 千问（3.59）分列二三位；<br>在场景客观维度下，在全部 29 个评测场景中，豆包（3.94）综合均分排名第一，千问（3.83）和 元宝（3.65）分列二三位；<br>在场景主观维度下，在全部 29 个评测场景中，豆包（3.86）综合均分排名第一，千问（3.76）和 智谱清言（3.68）分列二三位。'
+    ? '<strong>综合最终结果</strong>：基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均结果看，豆包（3.84）位列整体榜单第一名，千问（3.73）在三项指标中均排名前三，以较小差距位列综合最终结果的第二名。<br>在APP综合体验维度下，DeepSeek（4.11）在APP综合体验中排名第一，豆包（3.72）和 千问（3.59）分列二三位；<br>在场景客观维度下，在全部 29 个评测场景中，豆包（3.94）综合均分排名第一，千问（3.83）和 元宝（3.65）分列二三位；<br>在场景主观维度下，在全部 29 个评测场景中，豆包（3.86）综合均分排名第一，千问（3.76）和 智谱清言（3.68）分列二三位。<br><br><strong>场景覆盖情况</strong>：豆包覆盖全部的29个子场景，千问和智谱均支持28个子场景（不支持语音总结功能），DeepSeek的场景覆盖度倒数第一，仅支持29个子场景中的17个。'
     : '<strong>综合最终结果</strong>：基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均结果看，DeepSeek（4.05）位列整体榜单第一名，Kimi（3.84）和豆包（3.84）并列第二，千问（3.81）以微弱差距排名第四。<br>在APP综合体验维度下，DeepSeek（4.11）在APP综合体验中排名第一，豆包（3.72）和 千问（3.59）分列二三位；<br>在场景客观维度下，在全部 29 个评测场景中，DeepSeek（4.10）综合均分排名第一，Kimi（3.98）和 千问（3.97）分列二三位；<br>在场景主观维度下，在全部 29 个评测场景中，Kimi（4.01）综合均分排名第一，DeepSeek（3.96）和 千问（3.89）分列二三位。';
   const radios = document.querySelectorAll('input[name="conclusionRankMode"]');
   radios.forEach(r => { r.checked = (r.value === conclusionRankMode); });
