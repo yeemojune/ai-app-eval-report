@@ -218,7 +218,7 @@
 
 <div class="stats-grid" id="statsGrid"><div class="stat-card"><span class="stat-number">3</span><span class="stat-label">评测维度类型</span></div><div class="stat-card"><span class="stat-number">29</span><span class="stat-label">评测场景</span></div><div class="stat-card"><span class="stat-number">12</span><span class="stat-label">AI 应用</span></div><div class="stat-card"><span class="stat-number">145</span><span class="stat-label">客观评测指标</span></div><div class="stat-card"><span class="stat-number">4</span><span class="stat-label">综合体验指标</span></div></div>
 
-<p style="text-align:center;color:#a0aec0;font-size:12px;margin:0 0 8px;">评测版本截止日期：2026.4.15 ｜ 报告更新时间：2026.4.30</p>
+<p style="text-align:center;color:#a0aec0;font-size:14px;margin:0 0 8px;">评测版本截止日期：2026.4.15 ｜ 报告更新时间：2026.4.30</p>
 
 <div class="tab-nav">
   <button class="tab-btn active" data-tab="conclusion">评测结论</button>
@@ -236,25 +236,25 @@
         <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#805ad5);">🏆</div>
         <h2>评测结论</h2>
       </div>
-      <p id="conclusionDesc" style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;">基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均，得出各APP最终综合评分（考量场景覆盖度）。您可通过下方滑块自由调整三项指标的权重占比。</p>
+      <p id="conclusionDesc" style="color:#4a5568;font-size:14px;line-height:1.8;margin:12px 0 20px;"><strong>综合最终结果</strong>：基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均结果看，豆包（3.84）位列整体榜单第一名，千问（3.73）在三项指标中均排名前三，以较小差距位列综合最终结果的第二名。<br>在APP综合体验维度下，DeepSeek（4.11）在APP综合体验中排名第一，豆包（3.72）和 千问（3.59）分列二三位；<br>在场景客观维度下，在全部 29 个评测场景中，豆包（3.94）综合均分排名第一，千问（3.83）和 元宝（3.65）分列二三位；<br>在场景主观维度下，在全部 29 个评测场景中，豆包（3.86）综合均分排名第一，千问（3.76）和 智谱清言（3.68）分列二三位。</p>
 
       <!-- 均分计算模式 -->
-      <div id="conclusionRankBar" style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:13px;color:#4a5568;"><span style="font-weight:600;color:#805ad5;">📐 均分计算</span><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="all29" checked onchange="switchConclusionRank('all29')"><span>考察场景覆盖</span></label><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="ignore" onchange="switchConclusionRank('ignore')"><span>忽略场景覆盖</span></label><span style="color:#a0aec0;font-size:11px;margin-left:8px;">切换计算方式查看排名变化</span></div>
+      <div id="conclusionRankBar" style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:14px;color:#4a5568;"><span style="font-weight:600;color:#805ad5;">📐 均分计算</span><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="all29" checked onchange="switchConclusionRank('all29')"><span>考察场景覆盖</span></label><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="ignore" onchange="switchConclusionRank('ignore')"><span>忽略场景覆盖</span></label><span style="color:#a0aec0;font-size:14px;margin-left:8px;">切换计算方式查看排名变化</span></div>
 
       <!-- 权重滑块 -->
       <div style="background:#f7fafc;border-radius:12px;border:1px solid #e2e8f0;padding:20px 24px;margin:0 0 24px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;"><span style="font-weight:700;font-size:14px;color:#2d3748;">⚖️ 权重配置</span><span style="color:#a0aec0;font-size:12px;">拖动滑块调整三项指标权重，总和自动归一化</span></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;"><span style="font-weight:700;font-size:14px;color:#2d3748;">⚖️ 权重配置</span><span style="color:#a0aec0;font-size:14px;">拖动滑块调整三项指标权重，总和自动归一化</span></div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
           <div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;color:#2c5282;">场景客观维度</span><span id="wObjVal" style="font-size:13px;color:#2c5282;font-weight:700;">33%</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:14px;font-weight:600;color:#2c5282;">场景客观维度</span><span id="wObjVal" style="font-size:14px;color:#2c5282;font-weight:700;">33%</span></div>
             <input type="range" id="wObj" min="0" max="100" value="33" oninput="scheduleConclusionUpdate()" style="width:100%;accent-color:#2c5282;">
           </div>
           <div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;color:#e53e3e;">场景主观维度</span><span id="wSubVal" style="font-size:13px;color:#e53e3e;font-weight:700;">33%</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:14px;font-weight:600;color:#e53e3e;">场景主观维度</span><span id="wSubVal" style="font-size:14px;color:#e53e3e;font-weight:700;">33%</span></div>
             <input type="range" id="wSub" min="0" max="100" value="33" oninput="scheduleConclusionUpdate()" style="width:100%;accent-color:#e53e3e;">
           </div>
           <div>
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;color:#805ad5;">APP综合体验</span><span id="wExpVal" style="font-size:13px;color:#805ad5;font-weight:700;">34%</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:14px;font-weight:600;color:#805ad5;">APP综合体验</span><span id="wExpVal" style="font-size:14px;color:#805ad5;font-weight:700;">34%</span></div>
             <input type="range" id="wExp" min="0" max="100" value="34" oninput="scheduleConclusionUpdate()" style="width:100%;accent-color:#805ad5;">
           </div>
         </div>
@@ -373,14 +373,14 @@
     <!-- 场景客观维度 -->
     <div style="margin-bottom:24px;">
       <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#667eea;border-radius:2px;"></span>场景客观维度</h3>
-      <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">围绕29个子场景的业务特征与体验瓶颈，我们差异化构建了场景适配的客观评价指标体系，以保障评测结果能够有效映射产品在真实使用情境下的客观表现。</p>
+      <p style="color:#4a5568;font-size:14px;line-height:1.7;margin:0 0 12px;">围绕29个子场景的业务特征与体验瓶颈，我们差异化构建了场景适配的客观评价指标体系，以保障评测结果能够有效映射产品在真实使用情境下的客观表现。</p>
       <div id="objDimCards"></div>
     </div>
 
     <!-- 场景主观维度 -->
     <div style="margin-bottom:24px;">
       <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#48bb78;border-radius:2px;"></span>场景主观维度</h3>
-      <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">在确立场景客观评价指标的基础上，我们进一步引入「交互体验」、「拟人化」与「效率感知」三项维度，旨在构建主客观协同的评估框架，突破单一效能验证的局限，实现对智能助手综合交互体验质量的系统化主观评测。</p>
+      <p style="color:#4a5568;font-size:14px;line-height:1.7;margin:0 0 12px;">在确立场景客观评价指标的基础上，我们进一步引入「交互体验」、「拟人化」与「效率感知」三项维度，旨在构建主客观协同的评估框架，突破单一效能验证的局限，实现对智能助手综合交互体验质量的系统化主观评测。</p>
       <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
         <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">类别</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">二级维度</th></tr></thead>
         <tbody>
@@ -400,7 +400,7 @@
     <!-- APP综合体验维度 -->
     <div style="margin-bottom:0;">
       <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#805ad5;border-radius:2px;"></span>APP综合体验维度</h3>
-      <p style="color:#4a5568;font-size:13px;line-height:1.7;margin:0 0 12px;">除场景客观维度与场景主观维度外，我们独立构建「APP综合体验维度」（涵盖总体满意度、NPS净推荐值与持续使用意愿），以突破场景级评测的碎片化局限，形成"微观场景效能+宏观全局感知"的立体评估框架，全面量化产品的整体体验水位、用户忠诚度与长期商业价值。</p>
+      <p style="color:#4a5568;font-size:14px;line-height:1.7;margin:0 0 12px;">除场景客观维度与场景主观维度外，我们独立构建「APP综合体验维度」（涵盖总体满意度、NPS净推荐值与持续使用意愿），以突破场景级评测的碎片化局限，形成"微观场景效能+宏观全局感知"的立体评估框架，全面量化产品的整体体验水位、用户忠诚度与长期商业价值。</p>
       <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
         <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">模态类别</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">评测关注点</th></tr></thead>
         <tbody>
@@ -2391,9 +2391,9 @@ function updateConclusion(animate) {
 
   // Sync description text and radio buttons with conclusionRankMode
   const descEl = document.getElementById('conclusionDesc');
-  if (descEl) descEl.textContent = conclusionRankMode === 'all29'
-    ? '基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均，得出各APP最终综合评分（考量场景覆盖度）。您可通过下方滑块自由调整三项指标的权重占比。'
-    : '基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均，得出各APP最终综合评分（忽略场景覆盖度）。您可通过下方滑块自由调整三项指标的权重占比。';
+  if (descEl) descEl.innerHTML = conclusionRankMode === 'all29'
+    ? '<strong>综合最终结果</strong>：基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均结果看，豆包（3.84）位列整体榜单第一名，千问（3.73）在三项指标中均排名前三，以较小差距位列综合最终结果的第二名。<br>在APP综合体验维度下，DeepSeek（4.11）在APP综合体验中排名第一，豆包（3.72）和 千问（3.59）分列二三位；<br>在场景客观维度下，在全部 29 个评测场景中，豆包（3.94）综合均分排名第一，千问（3.83）和 元宝（3.65）分列二三位；<br>在场景主观维度下，在全部 29 个评测场景中，豆包（3.86）综合均分排名第一，千问（3.76）和 智谱清言（3.68）分列二三位。'
+    : '<strong>综合最终结果</strong>：基于场景客观维度、场景主观维度与APP综合体验维度三项指标的加权平均结果看，DeepSeek（4.05）位列整体榜单第一名，Kimi（3.84）和豆包（3.84）并列第二，千问（3.81）以微弱差距排名第四。<br>在APP综合体验维度下，DeepSeek（4.11）在APP综合体验中排名第一，豆包（3.72）和 千问（3.59）分列二三位；<br>在场景客观维度下，在全部 29 个评测场景中，DeepSeek（4.10）综合均分排名第一，Kimi（3.98）和 千问（3.97）分列二三位；<br>在场景主观维度下，在全部 29 个评测场景中，Kimi（4.01）综合均分排名第一，DeepSeek（3.96）和 千问（3.89）分列二三位。';
   const radios = document.querySelectorAll('input[name="conclusionRankMode"]');
   radios.forEach(r => { r.checked = (r.value === conclusionRankMode); });
 
