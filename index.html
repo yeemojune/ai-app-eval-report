@@ -1427,13 +1427,17 @@ function renderExperience() {
     <div class="bar-chart-grid">`;
 
   dims.forEach(dim => {
+    const sortedDim = appSatisfactionData.slice().sort((a, b) => b[dim] - a[dim]);
+    const desc = `${sortedDim[0].name}（${sortedDim[0][dim].toFixed(2)}）排名第一，${sortedDim[1].name}（${sortedDim[1][dim].toFixed(2)}）和${sortedDim[2].name}（${sortedDim[2][dim].toFixed(2)}）分列二三位。`;
     html += `<div class="bar-chart-card">
       <div class="bar-chart-title"><span>${dimEmojis[dim]} ${dimLabels[dim]}</span></div>
       <div class="bar-chart-container">
         <canvas id="bar-${dim}"></canvas>
         <div class="logo-overlay" id="logos-${dim}"></div>
         <div id="tip-${dim}" style="position:absolute;pointer-events:none;opacity:0;transition:opacity 0.15s ease;z-index:10;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.14),0 2px 8px rgba(0,0,0,0.08);padding:12px 16px;min-width:160px;font-family:system-ui,-apple-system,sans-serif;"></div>
-      </div></div>`;
+      </div>
+      <div class="highlight-box">${desc}</div>
+    </div>`;
   });
   html += `</div></section>`;
 
