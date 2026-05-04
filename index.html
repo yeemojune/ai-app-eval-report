@@ -172,7 +172,7 @@
   .bar-chart-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
   .bar-chart-container { position: relative; height: 340px; }
   .logo-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 2; }
-  .app-logo { position: absolute; width: 28px; height: 28px; border-radius: 6px; object-fit: cover; background: white; border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+  .app-logo { position: absolute; width: 28px; height: 28px; border-radius: 6px; object-fit: cover; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.18); }
   img[src^="data:image"] { background: white; }
   .bar-score-label { position: absolute; transform: translateX(-50%); font-size: 0.72rem; font-weight: 700; color: var(--text); }
 
@@ -381,7 +381,7 @@
     <div style="margin-bottom:24px;">
       <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#48bb78;border-radius:2px;"></span>场景主观维度</h3>
       <p style="color:#4a5568;font-size:14px;line-height:1.7;margin:0 0 12px;">在确立场景客观评价指标的基础上，我们进一步引入「交互体验」、「拟人化」与「效率感知」三项维度，旨在构建主客观协同的评估框架，突破单一效能验证的局限，实现对智能助手综合交互体验质量的系统化主观评测。</p>
-      <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;"><colgroup><col style="width:25%"><col style="width:25%"><col style="width:50%"></colgroup>
         <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">类别</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">二级维度</th></tr></thead>
         <tbody>
           <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;" rowspan="3">场景主观维度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;" rowspan="3">交互体验</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">界面简洁度</td></tr>
@@ -401,7 +401,7 @@
     <div style="margin-bottom:0;">
       <h3 style="font-size:16px;color:#2d3748;margin:0 0 8px;display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:4px;height:18px;background:#805ad5;border-radius:2px;"></span>APP综合体验维度</h3>
       <p style="color:#4a5568;font-size:14px;line-height:1.7;margin:0 0 12px;">除场景客观维度与场景主观维度外，我们独立构建「APP综合体验维度」（涵盖总体满意度、NPS净推荐值与持续使用意愿），以突破场景级评测的碎片化局限，形成"微观场景效能+宏观全局感知"的立体评估框架，全面量化产品的整体体验水位、用户忠诚度与长期商业价值。</p>
-      <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;"><colgroup><col style="width:25%"><col style="width:25%"><col style="width:50%"></colgroup>
         <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">模态类别</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">评测关注点</th></tr></thead>
         <tbody>
           <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;" rowspan="3">综合体验指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">总体满意度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">对 APP 的整体评价</td></tr>
@@ -1521,8 +1521,9 @@ function renderExperience() {
           }
         },
         animation: {
+          duration: 0,
           onComplete: function() {
-            positionLogos(chart, sorted, dim);
+            requestAnimationFrame(() => positionLogos(this, sorted, dim));
           }
         }
       }
