@@ -3,7 +3,7 @@
 <html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>「AI 助手」产品评测报告</title>
+<title>国产「AI 助手」产品评测报告</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
   :root {
@@ -207,7 +207,7 @@
 <body>
 
 <div class="hero">
-  <h1>「AI 助手」产品评测报告</h1>
+  <h1>国产「AI 助手」产品评测报告</h1>
   <p class="subtitle">覆盖 APP 综合体验、场景客观维度、场景主观维度三大评测体系，全方位对比 12 款主流 AI 应用</p>
   <div class="badge-group">
     <span class="badge">3 类评测维度</span>
@@ -218,7 +218,7 @@
 
 <div class="stats-grid" id="statsGrid"><div class="stat-card"><span class="stat-number">3</span><span class="stat-label">评测维度类型</span></div><div class="stat-card"><span class="stat-number">29</span><span class="stat-label">评测场景</span></div><div class="stat-card"><span class="stat-number">12</span><span class="stat-label">AI 应用</span></div><div class="stat-card"><span class="stat-number">145</span><span class="stat-label">客观评测指标</span></div><div class="stat-card"><span class="stat-number">4</span><span class="stat-label">综合体验指标</span></div></div>
 
-<p style="text-align:center;color:#a0aec0;font-size:14px;margin:0 0 8px;">评测版本截止日期：2026.4.15 ｜ 报告更新时间：2026.4.30</p>
+<p style="text-align:center;color:#a0aec0;font-size:14px;margin:0 0 8px;">产品版本评测日期：2026.4.15 ｜ 报告更新时间：2026.5.6</p>
 
 <div class="tab-nav">
   <button class="tab-btn active" data-tab="conclusion">评测结论</button>
@@ -261,7 +261,11 @@
       </div>
 
       <!-- 柱状图 -->
-      <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:20px;margin:0 0 24px;">
+      <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin:0 0 24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:linear-gradient(135deg,#1E2A5D,#2D4A8E);color:white;font-weight:600;font-size:0.9rem;">
+          <span>国产「AI 助手」产品评测榜单</span>
+          <span style="font-weight:400;opacity:0.85;">2026年5月</span>
+        </div>
         <div style="position:relative;height:420px;">
           <canvas id="conclusionChart"></canvas>
           <div class="logo-overlay" id="conclusionLogos" style="z-index:2;"></div>
@@ -1557,7 +1561,7 @@ function positionLogos(chart, sortedData, dim) {
     label.className = 'bar-score-label';
     label.textContent = d[dim].toFixed(2);
     label.style.left = (bar.x) + 'px';
-    label.style.top = (bar.y - 16) + 'px';
+    label.style.top = (bar.y - 20) + 'px';
     overlay.appendChild(label);
   });
 }
