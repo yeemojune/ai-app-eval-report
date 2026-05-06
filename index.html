@@ -215,7 +215,7 @@
   </div>
 </div>
 
-<div class="stats-grid" id="statsGrid"><div class="stat-card"><span class="stat-number">3</span><span class="stat-label">评测维度类型</span></div><div class="stat-card"><span class="stat-number">29</span><span class="stat-label">评测场景</span></div><div class="stat-card"><span class="stat-number">12</span><span class="stat-label">AI 产品</span></div><div class="stat-card"><span class="stat-number">3</span><span class="stat-label">综合体验指标</span></div><div class="stat-card"><span class="stat-number">145</span><span class="stat-label">场景客观指标</span></div><div class="stat-card"><span class="stat-number">9</span><span class="stat-label">场景主观指标</span></div></div>
+<div class="stats-grid" id="statsGrid"><div class="stat-card"><span class="stat-number">3</span><span class="stat-label">评测维度类型</span></div><div class="stat-card"><span class="stat-number">29</span><span class="stat-label">评测场景</span></div><div class="stat-card"><span class="stat-number">12</span><span class="stat-label">AI 产品</span></div><div class="stat-card"><span class="stat-number">3</span><span class="stat-label">产品综合体验指标</span></div><div class="stat-card"><span class="stat-number">145</span><span class="stat-label">场景客观指标</span></div><div class="stat-card"><span class="stat-number">9</span><span class="stat-label">场景主观指标</span></div></div>
 
 <div class="tab-nav">
   <button class="tab-btn active" data-tab="conclusion">整体评测结果</button>
@@ -406,7 +406,7 @@
       <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;"><colgroup><col style="width:25%"><col style="width:25%"><col style="width:50%"></colgroup>
         <thead><tr style="background:#edf2f7;"><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">模态类别</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">一级维度</th><th style="padding:8px 12px;text-align:center;border-bottom:2px solid #cbd5e0;">评测关注点</th></tr></thead>
         <tbody>
-          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;" rowspan="3">综合体验指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">总体满意度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">对产品的整体评价</td></tr>
+          <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;" rowspan="3">产品综合体验指标</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">总体满意度</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">对产品的整体评价</td></tr>
           <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">NPS 净推荐值</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">是否愿意推荐给朋友</td></tr>
           <tr><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">持续使用意愿</td><td style="padding:6px 12px;border-bottom:1px solid #e2e8f0;text-align:center;">是否打算长期使用，是否付费</td></tr>
         </tbody>
@@ -1380,7 +1380,7 @@ function renderStats() {
   const statsEl = document.getElementById('statsGrid');
   const statsData = [
     ['3', '评测维度类型'], [scenes.length, '评测场景'], [appNames.length, 'AI 产品'],
-    ['3', '综合体验指标'], [totalDims, '场景客观指标'], ['9', '场景主观指标']
+    ['3', '产品综合体验指标'], [totalDims, '场景客观指标'], ['9', '场景主观指标']
   ];
   statsEl.innerHTML = statsData.map(([n, l]) =>
     `<div class="stat-card"><span class="stat-number">${n}</span><span class="stat-label">${l}</span></div>`
