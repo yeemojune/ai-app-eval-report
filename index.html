@@ -237,7 +237,7 @@
 
       <!-- 均分计算模式 -->
       <div id="conclusionRankBar" style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:14px;color:#4a5568;"><span style="font-weight:600;color:#805ad5;">📐 均分计算</span><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="all29" checked onchange="switchConclusionRank('all29')"><span>考察场景覆盖</span></label><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="conclusionRankMode" value="ignore" onchange="switchConclusionRank('ignore')"><span>忽略场景覆盖</span></label><span style="color:#a0aec0;font-size:14px;margin-left:8px;">切换计算方式查看排名变化</span></div>
-      <p style="font-size:12px;color:#718096;margin:0 0 12px;padding:0 16px;line-height:1.6;">考察场景覆盖情况下，当前维度得分为各场景得分总分/总场景数（29）；忽略场景覆盖情况下，当前维度得分为各场景得分总分/当前产品有效场景数</p>
+      <p style="font-size:12px;color:#718096;margin:0 0 12px;padding:0 16px;line-height:1.6;">注：考察场景覆盖情况下，当前维度得分为各场景得分总分/总场景数（29）；忽略场景覆盖情况下，当前维度得分为各场景得分总分/当前产品有效场景数</p>
 
       <!-- 权重滑块 -->
       <div style="background:#f7fafc;border-radius:12px;border:1px solid #e2e8f0;padding:20px 24px;margin:0 0 24px;">
@@ -1699,7 +1699,7 @@ function renderObjective() {
     <h2>场景客观维度综合排名</h2></div>
     <p class="section-desc">基于所有评测场景的有效维度得分计算各产品综合平均分，排名反映整体表现。</p>
     <div style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:13px;color:#4a5568;"><span style="font-weight:600;color:#2c5282;">📐 均分计算</span><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="objRankMode" value="all29" ${objRankMode==='all29'?'checked':''} onchange="switchObjRank('all29')"><span>考察场景覆盖</span></label><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="objRankMode" value="ignore" ${objRankMode==='ignore'?'checked':''} onchange="switchObjRank('ignore')"><span>忽略场景覆盖</span></label><span style="color:#a0aec0;font-size:11px;margin-left:8px;">切换计算方式查看排名变化</span></div>
-    <p style="font-size:12px;color:#718096;margin:0 0 12px;padding:0 16px;line-height:1.6;">考察场景覆盖情况下，当前维度得分为各场景得分总分/总场景数（29）；忽略场景覆盖情况下，当前维度得分为各场景得分总分/当前产品有效场景数</p>
+    <p style="font-size:12px;color:#718096;margin:0 0 12px;padding:0 16px;line-height:1.6;">注：考察场景覆盖情况下，当前维度得分为各场景得分总分/总场景数（29）；忽略场景覆盖情况下，当前维度得分为各场景得分总分/当前产品有效场景数</p>
     <div class="table-wrap"><table><thead><tr><th>排名</th><th>产品</th><th>综合均分</th><th>有效场景数</th></tr></thead><tbody>`;
   sorted.forEach((name, i) => {
     const rc = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
@@ -1916,7 +1916,7 @@ function renderSubjective() {
     <h2>场景主观维度综合排名</h2></div>
     <p class="section-desc">基于所有评测场景的三维度（交互体验、拟人化、效率感知）综合均分计算各产品最终平均分。</p>
     <div style="display:flex;align-items:center;gap:12px;padding:8px 16px;margin:0 0 12px;background:#f7fafc;border-radius:8px;border:1px solid #e2e8f0;font-size:13px;color:#4a5568;"><span style="font-weight:600;color:#e53e3e;">📐 均分计算</span><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="subRankMode" value="all29" ${subRankMode==='all29'?'checked':''} onchange="switchSubRank('all29')"><span>考察场景覆盖</span></label><label style="display:flex;align-items:center;gap:4px;cursor:pointer;"><input type="radio" name="subRankMode" value="ignore" ${subRankMode==='ignore'?'checked':''} onchange="switchSubRank('ignore')"><span>忽略场景覆盖</span></label><span style="color:#a0aec0;font-size:11px;margin-left:8px;">切换计算方式查看排名变化</span></div>
-    <p style="font-size:12px;color:#718096;margin:0 0 12px;padding:0 16px;line-height:1.6;">考察场景覆盖情况下，当前维度得分为各场景得分总分/总场景数（29）；忽略场景覆盖情况下，当前维度得分为各场景得分总分/当前产品有效场景数</p>
+    <p style="font-size:12px;color:#718096;margin:0 0 12px;padding:0 16px;line-height:1.6;">注：考察场景覆盖情况下，当前维度得分为各场景得分总分/总场景数（29）；忽略场景覆盖情况下，当前维度得分为各场景得分总分/当前产品有效场景数</p>
     <div class="table-wrap"><table><thead><tr><th>排名</th><th>产品</th><th>综合均分</th><th>${subRankMode==='ignore'?'有效场景数':'有效场景数'}</th></tr></thead><tbody>`;
   sorted.forEach((name, i) => {
     const rc = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
