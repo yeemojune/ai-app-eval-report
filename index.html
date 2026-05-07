@@ -227,7 +227,7 @@
 </div>
 
 <div class="tab-panel active" id="panel-conclusion">
-  <div class="container" style="max-width:1200px;margin:0 auto 16px;">
+  <div class="container" style="max-width:1100px;margin:0 auto 16px;">
     <section>
       <div class="section-header">
         <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#805ad5);">🏆</div>
@@ -364,7 +364,7 @@
 </div>
 
 <div class="tab-panel" id="panel-method">
-  <div class="container" style="max-width:1200px;margin:0 auto 16px;">
+  <div class="container" style="max-width:1100px;margin:0 auto 16px;">
   <section>
     <div class="section-header">
       <div class="icon" style="background:linear-gradient(135deg,#2b6cb0,#63b3ed);">📐</div>
@@ -415,7 +415,7 @@
   </section>
   </div>
 
-  <div class="container" style="max-width:1200px;margin:0 auto 16px;">
+  <div class="container" style="max-width:1100px;margin:0 auto 16px;">
   <section>
     <div class="section-header">
       <div class="icon" style="background:linear-gradient(135deg,#c05621,#ed8936);">📋</div>
@@ -1693,6 +1693,55 @@ function renderObjective() {
   const container = document.getElementById('mainContainer');
   let html = '';
 
+  // ===== Product×Scene matrix table (objective) =====
+  html += `<section><div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#2c5282,#3182ce);">⊞</div>
+    <h2>场景客观维度均分总览</h2></div>
+    <p class="section-desc">各产品在每个评测场景下的客观维度均分，纵轴为场景，横轴为产品。</p>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#edf2f7;min-width:120px;text-align:left;">场景</th>`;
+  appNames.forEach(n => {
+    html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;"><strong style="display:inline-flex;align-items:center;gap:2px;"><img src="${appLogoMap[n]}" style="width:16px;height:16px;border-radius:3px;object-fit:cover;">${n}</strong></th>`;
+  });
+  html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;font-weight:600;">千问排名</th>`;
+  html += `</tr></thead><tbody>`;
+  scenes.forEach((s, si) => {
+    // Compute all scores for this scene
+    const sceneScores = appNames.map(n => {
+      const scores = embeddedData[s].data[n];
+      if (scores) { const valid = scores.filter(v => v !== null); return valid.length > 0 ? valid.reduce((a,b)=>a+b,0)/valid.length : -1; }
+      return -1;
+    });
+    // Compute 千问 rank
+    const qwIdx = appNames.indexOf('千问');
+    const qwScore = sceneScores[qwIdx];
+    let qwRank = 1;
+    sceneScores.forEach(sc => { if (sc > qwScore) qwRank++; });
+    const totalApps = appNames.length;
+    const rankRatio = (qwRank - 1) / (totalApps - 1);
+    const rankHue = 120 * (1 - rankRatio);
+    const rankBg = `hsl(${rankHue}, 55%, 88%)`;
+    html += `<tr><td style="position:sticky;left:0;z-index:1;background:#fff;padding:4px 8px;font-size:11px;white-space:nowrap;border-bottom:1px solid #e2e8f0;">${s}</td>`;
+    // Find max and min valid scores
+    const validScores = sceneScores.filter(v => v >= 0);
+    const maxScore = validScores.length > 0 ? Math.max(...validScores) : -1;
+    const minScore = validScores.length > 0 ? Math.min(...validScores) : -1;
+    sceneScores.forEach((v, idx) => {
+      if (v >= 0) {
+        const avg = v.toFixed(2);
+        let bg = 'transparent';
+        if (v === maxScore) bg = '#c6f6d5';
+        else if (v === minScore) bg = '#fed7d7';
+        else if (idx === qwIdx) bg = '#e8ecf4';
+        html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;background:${bg};font-size:10px;">${avg}</td>`;
+      } else {
+        html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;color:#cbd5e0;">-</td>`;
+      }
+    });
+    html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;background:${rankBg};font-size:10px;font-weight:600;">${qwScore >= 0 ? qwRank : '-'}</td>`;
+    html += `</tr>`;
+  });
+  html += `</tbody></table></div></section>`;
+
   // Overview ranking with logos
   html += `<section><div class="section-header">
     <div class="icon" style="background:linear-gradient(135deg,#2c5282,#3182ce);">★</div>
@@ -1907,6 +1956,57 @@ function renderSubjective() {
 
   const container = document.getElementById('subjectiveContainer');
   let html = '';
+
+  // ===== Product×Scene matrix table (subjective) =====
+  html += `<section><div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#e53e3e,#fc8181);">⊞</div>
+    <h2>场景主观维度均分总览</h2></div>
+    <p class="section-desc">各产品在每个评测场景下的主观维度均分，纵轴为场景，横轴为产品。</p>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#edf2f7;min-width:120px;text-align:left;">场景</th>`;
+  appNames.forEach(n => {
+    html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;"><strong style="display:inline-flex;align-items:center;gap:2px;"><img src="${appLogoMap[n]}" style="width:16px;height:16px;border-radius:3px;object-fit:cover;">${n}</strong></th>`;
+  });
+  html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;font-weight:600;">千问排名</th>`;
+  html += `</tr></thead><tbody>`;
+  scenes.forEach((s, si) => {
+    // Compute 千问 rank
+    const sceneApps2 = subjectiveData.scenes[s];
+    const qwData2 = sceneApps2 && sceneApps2['千问'];
+    const qwScore2 = qwData2 && qwData2.avg !== null ? qwData2.avg : -1;
+    let qwRank2 = 1;
+    appNames.forEach(n2 => {
+      if (sceneApps2 && sceneApps2[n2] && sceneApps2[n2].avg !== null && sceneApps2[n2].avg > qwScore2) qwRank2++;
+    });
+    const totalApps2 = appNames.length;
+    const rankRatio2 = (qwRank2 - 1) / (totalApps2 - 1);
+    const rankHue2 = 120 * (1 - rankRatio2);
+    const rankBg2 = `hsl(${rankHue2}, 55%, 88%)`;
+    // Find max and min valid scores for this scene
+    const validSubScores = appNames.map(n2 => {
+      const d = sceneApps2 && sceneApps2[n2] && sceneApps2[n2].avg !== null ? sceneApps2[n2].avg : -1;
+      return d;
+    }).filter(v => v >= 0);
+    const maxSub = validSubScores.length > 0 ? Math.max(...validSubScores) : -1;
+    const minSub = validSubScores.length > 0 ? Math.min(...validSubScores) : -1;
+    html += `<tr><td style="position:sticky;left:0;z-index:1;background:#fff;padding:4px 8px;font-size:11px;white-space:nowrap;border-bottom:1px solid #e2e8f0;">${s}</td>`;
+    appNames.forEach((n, nIdx) => {
+      const sceneApps = subjectiveData.scenes[s];
+      if (sceneApps && sceneApps[n] && sceneApps[n].avg !== null) {
+        const avg = sceneApps[n].avg.toFixed(2);
+        const v = sceneApps[n].avg;
+        let bg = 'transparent';
+        if (v === maxSub) bg = '#c6f6d5';
+        else if (v === minSub) bg = '#fed7d7';
+        else if (n === '千问') bg = '#e8ecf4';
+        html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;background:${bg};font-size:10px;">${avg}</td>`;
+      } else {
+        html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;color:#cbd5e0;">-</td>`;
+      }
+    });
+    html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;background:${rankBg2};font-size:10px;font-weight:600;">${qwScore2 >= 0 ? qwRank2 : '-'}</td>`;
+    html += `</tr>`;
+  });
+  html += `</tbody></table></div></section>`;
 
   const totalScenes = scenes.length;
 
