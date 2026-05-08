@@ -1297,15 +1297,15 @@ const iconColors = [
 const colorPalette = [
   'rgba(79, 62, 255, 1)',    // 千问 - Logo主色
   'rgba(222, 184, 135, 1)',  // 豆包 - Skin tone
-  'rgba(77, 107, 254, 1)',   // DeepSeek - Indigo
-  'rgba(38, 110, 247, 1)',   // 文心 - Baidu Blue
+  'rgba(20, 184, 166, 1)',   // DeepSeek - Teal
+  'rgba(75, 75, 80, 1)',     // 文心 - Charcoal Gray
   'rgba(30, 58, 138, 1)',    // Kimi - Dark Blue
   'rgba(2, 132, 199, 1)',    // 讯飞星火 - Sky Blue
-  'rgba(102, 8, 116, 1)',     // 智谱清言 - Tsinghua Purple
+  'rgba(102, 8, 116, 1)',    // 智谱清言 - Tsinghua Purple
   'rgba(7, 193, 96, 1)',     // 元宝 - Tencent Green
-  'rgba(255, 106, 0, 1)',     // 灵光 - Alibaba Orange
+  'rgba(255, 106, 0, 1)',    // 灵光 - Alibaba Orange
   'rgba(255, 198, 0, 1)',    // 龙猫 - Meituan Yellow
-  'rgba(99, 102, 241, 1)',   // 问小白 - Indigo
+  'rgba(217, 119, 6, 1)',    // 问小白 - Amber
   'rgba(226, 22, 126, 1)'    // Minimax - Rose
 ];
 
@@ -1693,12 +1693,70 @@ function renderObjective() {
   const container = document.getElementById('mainContainer');
   let html = '';
 
+  // ===== Modality-aggregated table (objective) =====
+  const sceneKeyMap = {'睡前故事': '睡前故事（语音）'}; // objDimData sub → embeddedData key mapping
+  const modGroups = {};
+  objDimData.forEach(d => { if (!modGroups[d.mod]) modGroups[d.mod] = []; modGroups[d.mod].push(d.sub); });
+  const modNames = Object.keys(modGroups);
+  html += `<section><div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#2c5282,#3182ce);">⊞</div>
+    <h2>场景客观维度均分总览（分模态）</h2></div>
+    <p class="section-desc">按模态类型聚合各子场景得分，纵轴为模态类型，横轴为产品。单元格为该模态类型下所有有效子场景均分的平均值。</p>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#edf2f7;min-width:120px;text-align:left;padding:4px 14px;">模态类型</th>`;
+  appNames.forEach(n => {
+    html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;"><strong style="display:inline-flex;align-items:center;gap:2px;"><img src="${appLogoMap[n]}" style="width:16px;height:16px;border-radius:3px;object-fit:cover;">${n}</strong></th>`;
+  });
+  html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;font-weight:600;">千问排名</th>`;
+  html += `</tr></thead><tbody>`;
+  modNames.forEach(mod => {
+    const subScenes = modGroups[mod];
+    // For each product, compute average across all sub-scenes
+    const modScores = appNames.map(n => {
+      let total = 0, count = 0;
+      subScenes.forEach(s => {
+        const dataKey = sceneKeyMap[s] || s;
+        const scores = embeddedData[dataKey] && embeddedData[dataKey].data[n];
+        if (scores) { const valid = scores.filter(v => v !== null); if (valid.length > 0) { total += valid.reduce((a,b)=>a+b,0)/valid.length; count++; } }
+      });
+      return count > 0 ? total / count : -1;
+    });
+    // 千问排名
+    const qwIdxM = appNames.indexOf('千问');
+    const qwScoreM = modScores[qwIdxM];
+    let qwRankM = 1;
+    modScores.forEach(sc => { if (sc > qwScoreM) qwRankM++; });
+    const totalAppsM = appNames.length;
+    const rankRatioM = (qwRankM - 1) / (totalAppsM - 1);
+    const rankHueM = 120 * (1 - rankRatioM);
+    const rankBgM = `hsl(${rankHueM}, 55%, 88%)`;
+    // max / min
+    const validModScores = modScores.filter(v => v >= 0);
+    const maxMod = validModScores.length > 0 ? Math.max(...validModScores) : -1;
+    const minMod = validModScores.length > 0 ? Math.min(...validModScores) : -1;
+    html += `<tr><td style="position:sticky;left:0;z-index:1;background:#fff;padding:4px 14px;font-size:11px;white-space:nowrap;border-bottom:1px solid #e2e8f0;">${mod}</td>`;
+    modScores.forEach((v, idx) => {
+      if (v >= 0) {
+        const avg = v.toFixed(2);
+        let bg = 'transparent';
+        if (v === maxMod) bg = '#c6f6d5';
+        else if (v === minMod) bg = '#fed7d7';
+        else if (idx === qwIdxM) bg = '#e8ecf4';
+        html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;background:${bg};font-size:10px;">${avg}</td>`;
+      } else {
+        html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;color:#cbd5e0;">-</td>`;
+      }
+    });
+    html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;background:${rankBgM};font-size:10px;font-weight:600;">${qwScoreM >= 0 ? qwRankM : '-'}</td>`;
+    html += `</tr>`;
+  });
+  html += `</tbody></table></div></section>`;
+
   // ===== Product×Scene matrix table (objective) =====
   html += `<section><div class="section-header">
     <div class="icon" style="background:linear-gradient(135deg,#2c5282,#3182ce);">⊞</div>
     <h2>场景客观维度均分总览</h2></div>
     <p class="section-desc">各产品在每个评测场景下的客观维度均分，纵轴为场景，横轴为产品。</p>
-    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#edf2f7;min-width:120px;text-align:left;">场景</th>`;
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#edf2f7;min-width:120px;text-align:left;padding:4px 14px;">场景</th>`;
   appNames.forEach(n => {
     html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;"><strong style="display:inline-flex;align-items:center;gap:2px;"><img src="${appLogoMap[n]}" style="width:16px;height:16px;border-radius:3px;object-fit:cover;">${n}</strong></th>`;
   });
@@ -1720,7 +1778,7 @@ function renderObjective() {
     const rankRatio = (qwRank - 1) / (totalApps - 1);
     const rankHue = 120 * (1 - rankRatio);
     const rankBg = `hsl(${rankHue}, 55%, 88%)`;
-    html += `<tr><td style="position:sticky;left:0;z-index:1;background:#fff;padding:4px 8px;font-size:11px;white-space:nowrap;border-bottom:1px solid #e2e8f0;">${s}</td>`;
+    html += `<tr><td style="position:sticky;left:0;z-index:1;background:#fff;padding:4px 14px;font-size:11px;white-space:nowrap;border-bottom:1px solid #e2e8f0;">${s}</td>`;
     // Find max and min valid scores
     const validScores = sceneScores.filter(v => v >= 0);
     const maxScore = validScores.length > 0 ? Math.max(...validScores) : -1;
@@ -1957,12 +2015,70 @@ function renderSubjective() {
   const container = document.getElementById('subjectiveContainer');
   let html = '';
 
+  // ===== Modality-aggregated table (subjective) =====
+  const sceneKeyMapS = {'睡前故事': '睡前故事（语音）'}; // objDimData sub → subjectiveData key mapping
+  const modGroupsS = {};
+  objDimData.forEach(d => { if (!modGroupsS[d.mod]) modGroupsS[d.mod] = []; modGroupsS[d.mod].push(d.sub); });
+  const modNamesS = Object.keys(modGroupsS);
+  html += `<section><div class="section-header">
+    <div class="icon" style="background:linear-gradient(135deg,#e53e3e,#fc8181);">⊞</div>
+    <h2>场景主观维度均分总览（分模态）</h2></div>
+    <p class="section-desc">按模态类型聚合各子场景得分，纵轴为模态类型，横轴为产品。单元格为该模态类型下所有有效子场景均分的平均值。</p>
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#edf2f7;min-width:120px;text-align:left;padding:4px 14px;">模态类型</th>`;
+  appNames.forEach(n => {
+    html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;"><strong style="display:inline-flex;align-items:center;gap:2px;"><img src="${appLogoMap[n]}" style="width:16px;height:16px;border-radius:3px;object-fit:cover;">${n}</strong></th>`;
+  });
+  html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;font-weight:600;">千问排名</th>`;
+  html += `</tr></thead><tbody>`;
+  modNamesS.forEach(mod => {
+    const subScenes = modGroupsS[mod];
+    // For each product, compute average across all sub-scenes
+    const modScores = appNames.map(n => {
+      let total = 0, count = 0;
+      subScenes.forEach(s => {
+        const dataKeyS = sceneKeyMapS[s] || s;
+        const sceneApps = subjectiveData.scenes[dataKeyS];
+        if (sceneApps && sceneApps[n] && sceneApps[n].avg !== null) { total += sceneApps[n].avg; count++; }
+      });
+      return count > 0 ? total / count : -1;
+    });
+    // 千问排名
+    const qwIdxS = appNames.indexOf('千问');
+    const qwScoreS = modScores[qwIdxS];
+    let qwRankS = 1;
+    modScores.forEach(sc => { if (sc > qwScoreS) qwRankS++; });
+    const totalAppsS = appNames.length;
+    const rankRatioS = (qwRankS - 1) / (totalAppsS - 1);
+    const rankHueS = 120 * (1 - rankRatioS);
+    const rankBgS = `hsl(${rankHueS}, 55%, 88%)`;
+    // max / min
+    const validModScoresS = modScores.filter(v => v >= 0);
+    const maxModS = validModScoresS.length > 0 ? Math.max(...validModScoresS) : -1;
+    const minModS = validModScoresS.length > 0 ? Math.min(...validModScoresS) : -1;
+    html += `<tr><td style="position:sticky;left:0;z-index:1;background:#fff;padding:4px 14px;font-size:11px;white-space:nowrap;border-bottom:1px solid #e2e8f0;">${mod}</td>`;
+    modScores.forEach((v, idx) => {
+      if (v >= 0) {
+        const avg = v.toFixed(2);
+        let bg = 'transparent';
+        if (v === maxModS) bg = '#c6f6d5';
+        else if (v === minModS) bg = '#fed7d7';
+        else if (idx === qwIdxS) bg = '#e8ecf4';
+        html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;background:${bg};font-size:10px;">${avg}</td>`;
+      } else {
+        html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;color:#cbd5e0;">-</td>`;
+      }
+    });
+    html += `<td style="text-align:center;padding:4px 2px;border-bottom:1px solid #e2e8f0;background:${rankBgS};font-size:10px;font-weight:600;">${qwScoreS >= 0 ? qwRankS : '-'}</td>`;
+    html += `</tr>`;
+  });
+  html += `</tbody></table></div></section>`;
+
   // ===== Product×Scene matrix table (subjective) =====
   html += `<section><div class="section-header">
     <div class="icon" style="background:linear-gradient(135deg,#e53e3e,#fc8181);">⊞</div>
     <h2>场景主观维度均分总览</h2></div>
     <p class="section-desc">各产品在每个评测场景下的主观维度均分，纵轴为场景，横轴为产品。</p>
-    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#edf2f7;min-width:120px;text-align:left;">场景</th>`;
+    <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;"><thead><tr><th style="position:sticky;left:0;z-index:2;background:#edf2f7;min-width:120px;text-align:left;padding:4px 14px;">场景</th>`;
   appNames.forEach(n => {
     html += `<th style="text-align:center;padding:4px 6px;font-size:10px;white-space:nowrap;background:#edf2f7;"><strong style="display:inline-flex;align-items:center;gap:2px;"><img src="${appLogoMap[n]}" style="width:16px;height:16px;border-radius:3px;object-fit:cover;">${n}</strong></th>`;
   });
@@ -1988,7 +2104,7 @@ function renderSubjective() {
     }).filter(v => v >= 0);
     const maxSub = validSubScores.length > 0 ? Math.max(...validSubScores) : -1;
     const minSub = validSubScores.length > 0 ? Math.min(...validSubScores) : -1;
-    html += `<tr><td style="position:sticky;left:0;z-index:1;background:#fff;padding:4px 8px;font-size:11px;white-space:nowrap;border-bottom:1px solid #e2e8f0;">${s}</td>`;
+    html += `<tr><td style="position:sticky;left:0;z-index:1;background:#fff;padding:4px 14px;font-size:11px;white-space:nowrap;border-bottom:1px solid #e2e8f0;">${s}</td>`;
     appNames.forEach((n, nIdx) => {
       const sceneApps = subjectiveData.scenes[s];
       if (sceneApps && sceneApps[n] && sceneApps[n].avg !== null) {
@@ -2007,6 +2123,7 @@ function renderSubjective() {
     html += `</tr>`;
   });
   html += `</tbody></table></div></section>`;
+
 
   const totalScenes = scenes.length;
 
